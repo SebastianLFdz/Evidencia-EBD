@@ -17,8 +17,8 @@ def Consulta_de_titulo():
         elif tipo_consulta=="2":
             continue
         elif tipo_consulta =="3":
-            consulta_Y_reportes()
+            break
         else:
             print("Error la opcion ingresada no existe, intentelo de nuevo")
             continue
-        break
+        

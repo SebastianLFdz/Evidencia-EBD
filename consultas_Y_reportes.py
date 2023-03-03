@@ -1,4 +1,6 @@
-def consulta_Y_reportes():
+from consulta_D_titulo import Consulta_de_titulo
+
+def consulta_Y_reporte():
     while True:    
         print("""  
     +-----------------------------------------+
@@ -16,8 +18,10 @@ def consulta_Y_reportes():
         elif opcion_menu_consultas == "2":
             continue
         elif opcion_menu_consultas =="3":
-            menu()
+            break
         else:
             print("La opción ingresada no existe, intente de nuevo. ")
             continue
-        break
+
+
+consulta_Y_reporte()

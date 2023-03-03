@@ -1,3 +1,5 @@
+from consultas_Y_reportes import consulta_Y_reporte 
+
 def menu():
     while True:
         print("""
@@ -29,14 +31,14 @@ def menu():
         if opciones =="1":
             continue
         elif opciones=="2":
-            continue
+            consulta_Y_reporte()
         elif opciones =="3":
             print("Gracias por visitar l a biblioteca J. FELIX GARCIA")
             break
         else:
             print("\nERROR la opcion elegida no existe.\n\nPor favor indique un numero disponible en el menú")
             continue
-        break
+        
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 diccionario={}
 menu()
