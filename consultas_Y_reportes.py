@@ -24,4 +24,3 @@ def consulta_Y_reporte():
             continue
 
 
-consulta_Y_reporte()
