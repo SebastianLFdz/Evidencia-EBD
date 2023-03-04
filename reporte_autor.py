@@ -44,20 +44,20 @@ def Reportes():
         elif metodo == "3":
             reporte_generos()
         elif metodo == "4":
-                anio_busqueda= input("ingrese el año de publicacion del libro a desear: ")
-                anio_datetime = datetime.datetime.strptime(anio_busqueda, "%Y").year
-                clave_anio = list(diccionario.keys())
-                for clave in clave_anio:
-                    if anio_datetime == diccionario[clave][4]:
-                        print("-" * 100)
-                        print("|\t\tTitulo\t\t|\tAutor\t|\tGenero\t|\tAño Publicacion\t|\t\tISBN\t\t|\tFecha de Adquisicion\t|")
-                        print("-" * 100)
-                        print(f"{diccionario[clave][0]:<21}", end="")
-                        print(f"{diccionario[clave][1]:<13}", end="")
-                        print(f"{diccionario[clave][2]:<13}", end="")
-                        print(f"{diccionario[clave][3]:<21}", end="")
-                        print(f"{diccionario[clave][4]:<21}", end="")
-                        print(f"{diccionario[clave][5]:<15}")
+            anio_busqueda= input("ingrese el año de publicacion del libro a desear: ")
+            anio_datetime = datetime.datetime.strptime(anio_busqueda, "%Y").year
+            clave_anio = list(diccionario.keys())
+            print("-" * 100)
+            print("|\t\tTitulo\t\t|\tAutor\t|\tGenero\t|\tAño Publicacion\t|\t\tISBN\t\t|\tFecha de Adquisicion\t|")
+            print("-" * 100)
+            for clave in clave_anio:
+                if anio_datetime == diccionario[clave][4]:                
+                    print(f"{diccionario[clave][0]:<21}", end="")
+                    print(f"{diccionario[clave][1]:<13}", end="")
+                    print(f"{diccionario[clave][2]:<13}", end="")
+                    print(f"{diccionario[clave][3]:<21}", end="")
+                    print(f"{diccionario[clave][4]:<21}", end="")
+                    print(f"{diccionario[clave][5]:<15}")
             
         elif metodo == "5":
             break
