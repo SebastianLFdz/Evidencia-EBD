@@ -50,16 +50,16 @@ def Reportes():
             anio_datetime = datetime.datetime.strptime(anio_busqueda, "%Y").year
             
             print("-" * 100)
-            print("|\tTitulo\t|  Autor  |  Genero  |\t\tISBN\t\t|   Año Publicacion  |  Fecha de Adquisicion  |")
+            print("|\tTitulo\t|  Autor  |  Genero  |\t  ISBN  \t| Año Publicacion |  Fecha de Adquisicion  |")
             print("-" * 100)
             
             for clave in clave_anio:
                 if anio_datetime == diccionario[clave][4]:                
-                    print(f"{diccionario[clave][0]:<21}", end="")
-                    print(f"{diccionario[clave][1]:<13}", end="")
-                    print(f"{diccionario[clave][2]:<13}", end="")
-                    print(f"{diccionario[clave][3]:<21}", end="")
-                    print(f"{diccionario[clave][4]:<21}", end="")
+                    print(f"{diccionario[clave][0]:<14}", end="")
+                    print(f"{diccionario[clave][1]:<9}", end="")
+                    print(f"{diccionario[clave][2]:<10}", end="")
+                    print(f"{diccionario[clave][3]:<16}", end="")
+                    print(f"{diccionario[clave][4]:<17}", end="")
                     print(f"{diccionario[clave][5]:<15}|")
             
         elif metodo == "5":
