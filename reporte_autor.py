@@ -44,12 +44,15 @@ def Reportes():
         elif metodo == "3":
             reporte_generos()
         elif metodo == "4":
+            
+            clave_anio = list(diccionario.keys())
             anio_busqueda= input("ingrese el año de publicacion del libro a desear: ")
             anio_datetime = datetime.datetime.strptime(anio_busqueda, "%Y").year
-            clave_anio = list(diccionario.keys())
+            
             print("-" * 100)
             print("|\tTitulo\t|\tAutor\t|\tGenero\t|\tAño Publicacion\t|\tISBN\t|\tFecha de Adquisicion\t|")
             print("-" * 100)
+            
             for clave in clave_anio:
                 if anio_datetime == diccionario[clave][4]:                
                     print(f"{diccionario[clave][0]:<21}", end="")
