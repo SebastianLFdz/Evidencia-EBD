@@ -50,7 +50,7 @@ def Reportes():
             anio_datetime = datetime.datetime.strptime(anio_busqueda, "%Y").year
             
             print("-" * 100)
-            print("|Titulo\t|  Autor  |  Genero  |  Año Publicacion  |\tISBN\t|  Fecha de Adquisicion  |")
+            print("|\tTitulo\t|  Autor  |  Genero  |  Año Publicacion  |\t\tISBN\t\t|  Fecha de Adquisicion  |")
             print("-" * 100)
             
             for clave in clave_anio:
