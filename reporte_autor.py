@@ -1,4 +1,6 @@
-import tabulate
+from reporte_genero import reporte_generos
+from diccionario import diccionario
+
 def Reportes():
     while True:
         print("""  
@@ -40,7 +42,7 @@ def Reportes():
             else:
                 print(f"No se encontraron libros escritos por {autor_busqueda}.")
         elif metodo == "3":
-            continue
+            reporte_generos()
         elif metodo == "4":
             continue
         elif metodo == "5":

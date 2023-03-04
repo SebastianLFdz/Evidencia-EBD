@@ -1,4 +1,5 @@
 from consulta_D_titulo import Consulta_de_titulo
+from reporte_autor import Reportes
 
 def consulta_Y_reporte():
     while True:    
@@ -16,7 +17,7 @@ def consulta_Y_reporte():
         if opcion_menu_consultas == "1":
             Consulta_de_titulo()
         elif opcion_menu_consultas == "2":
-            continue
+            Reportes()
         elif opcion_menu_consultas =="3":
             break
         else:

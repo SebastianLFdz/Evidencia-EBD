@@ -1,11 +1,6 @@
+from diccionario import diccionario
+
 def reporte_generos():
-    diccionario = {
-        1:["Fuego Abrasador","Sebas","MIEDO",1234567890123,"2004","26/08/2006"],
-        2:["Hielo Intenso","Sebas","ROMANCE",1234567890213,"2005","12/10/2008"],
-        3:["Zacatecas","Omar","MIEDO",1234567890312,"2014","16/04/2016"],
-        4:["Muevo Leon","Mauricio","MIEDO",1234567890132,"2010","07/12/2016"],
-        5:["Tierra Desolada","Sebas","ROMANCE",1234567890231,"2011","01/04/2020"],
-        }
     generos = []
     claves = list(diccionario.keys())
     for clave in claves:
@@ -25,7 +20,7 @@ def reporte_generos():
     genero_busqueda_mayusculas = genero_busqueda_minusculas.upper()
 
     print(" ")
-    print("-"*86+"|")
+    print("-"*86+"+")
     print(f"     Titulo\t|  Autor   |  Genero  |     ISBN      | Año Lanzado | Fecha Adquirida |")
     print("-"*86+"|")
 
@@ -38,5 +33,5 @@ def reporte_generos():
             print(f"|{diccionario[clave][4]:^13}", end="")
             print(f"|{diccionario[clave][5]:^17}|")
 
-    print("-"*86+"|")
+    print("-"*86+"+")
 

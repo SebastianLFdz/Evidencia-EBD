@@ -1,6 +1,7 @@
+from diccionario import diccionario
+import datetime
+
 def registro():
-    diccionario = {}
-    import datetime
     fecha_actual = datetime.datetime.now().date()
 
     def ingresar_datos():
@@ -8,9 +9,12 @@ def registro():
         lista_datos = []
         while True:
             id_libro=max(diccionario, default=0)+1
-            titulo=input("Ingresa el titulo del libro que deseas registrar:  ")
-            autor=input(f"Ingresa el autor del libro {titulo}:  ")
-            genero=input(f"Ingresa el genero del libro {titulo}:  ")
+            _titulo=input("Ingresa el titulo del libro que deseas registrar:  ")
+            titulo = _titulo.upper()
+            _autor=input(f"Ingresa el autor del libro {titulo}:  ")
+            autor = _autor.upper()
+            _genero=input(f"Ingresa el genero del libro {titulo}:  ")
+            genero = _genero.upper()
             while True:
                 isbn=input(f"Ingresa la clave ISBN del libro {titulo}: ")
                 if len(isbn) == 13:
@@ -39,23 +43,26 @@ def registro():
                         break
             año_publicacion = fecha_publicacion_procesada.year 
             string_adquisicion = str(fecha_adquisicion_procesada)
-            lista_datos = [titulo,autor,genero, isbn, año_publicacion, string_adquisicion]
             while True:
+                lista_datos = [titulo,autor,genero, isbn, año_publicacion, string_adquisicion]
                 print(lista_datos)
                 validacion = input(f"¿Todos los datos introducidos estan correctos?\n (S/N): ")
                 if validacion.upper() == "S":
-                    diccionario[id_libro]=[titulo,autor,genero, isbn, año_publicacion, fecha_adquisicion_procesada]
+                    diccionario[id_libro]=[titulo,autor,genero, isbn, año_publicacion, string_adquisicion]
                     break
                 elif validacion.upper() == "N":
                     print(f"¿Cual dato quiere modificar?")
                     print(f"1)Titulo\t2)Autor\t\t\t3)Genero\n4)ISBN\t\t5)Fecha de Publicacion\t6)Fecha de Adquisicion")
                     dato_modificar = int(input("--> "))
                     if dato_modificar == 1:
-                        titulo=input("Ingresa el nuevo titulo del libro:  ")
+                        _titulo=input("Ingresa el titulo del libro que deseas registrar:  ")
+                        titulo = _titulo.upper()
                     elif dato_modificar == 2:
-                        autor=input(f"Ingresa el nuevo autor del libro {titulo}:  ")
+                        _autor=input(f"Ingresa el nuevo autor del libro {titulo}:  ")
+                        autor= _autor.upper()
                     elif dato_modificar == 3:
-                        genero=input(f"Ingresa el nuevo genero del libro {titulo}:  ")
+                        _genero=input(f"Ingresa el nuevo genero del libro {titulo}:  ")
+                        genero = _genero.upper()
                     elif dato_modificar == 4:
                         isbn=input(f"Ingresa la nuev clave ISBN {titulo}: ")
                     elif dato_modificar == 5:

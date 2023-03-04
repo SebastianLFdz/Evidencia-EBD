@@ -1,7 +1,6 @@
 from consultas_Y_reportes import consulta_Y_reporte 
 from registro_libro import registro
 
-
 def menu():
     while True:
         print("""
@@ -42,5 +41,4 @@ def menu():
             continue
         
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-diccionario={}
 menu()
