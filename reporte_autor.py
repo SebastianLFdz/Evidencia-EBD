@@ -20,11 +20,14 @@ def Reportes():
 
         metodo = input("Ingresa la opción que desees --> ")
         if metodo == "1":
-            encabezados = ["ID", "Título", "Autor", "Género", "Año de publicación", "ISBN", "Fecha de adquisición"]
-
             print("Los ejemplares disponibles en este momento son: \n")
-            tabla = [[id_libro] + datos for id_libro, datos in diccionario.items()]
-            print(tabulate.tabulate(tabla, headers=encabezados))
+
+            print(f'+{"-" *102}+')
+            print(f"|{'ID':^8}|{'Título':^15}|{'Autor':^10}|{'Género':^12}|{'Año de publicación':^18}|{'ISBN':^13}|{'Fecha de adquisición':^20}|")
+            for id_libro, datos in diccionario.items():
+                print(f'+{"-" *102}+')
+                print(f'|{id_libro:^8}|{datos[0]:^15}|{datos[1]:^10}|{datos[2]:^12}|{datos[3]:^18}|{datos[4]:^13}|{datos[5]:^20}|')
+                print(f'+{"-"*102}+')
 
         elif metodo == "2":
 
@@ -45,22 +48,18 @@ def Reportes():
             reporte_generos()
         elif metodo == "4":
             
-            clave_anio = list(diccionario.keys())
+            anio = list(diccionario.items())
             anio_busqueda= input("ingrese el año de publicacion del libro a desear: ")
             anio_datetime = datetime.datetime.strptime(anio_busqueda, "%Y").year
             
-            print("-" * 100)
-            print("|\tTitulo\t|  Autor  |  Genero  |\t  ISBN  \t| Año Publicacion |  Fecha de Adquisicion  |")
-            print("-" * 100)
+            print(f'+{"-"*98}+')
+            print(f"|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
+            print(f'+{"-"*98}+')
             
-            for clave in clave_anio:
-                if anio_datetime == diccionario[clave][4]:                
-                    print(f"{diccionario[clave][0]:<14}", end="")
-                    print(f"{diccionario[clave][1]:<9}", end="")
-                    print(f"{diccionario[clave][2]:<10}", end="")
-                    print(f"{diccionario[clave][3]:<16}", end="")
-                    print(f"{diccionario[clave][4]:<17}", end="")
-                    print(f"{diccionario[clave][5]:<15}|")
+            for clave, datos in anio:
+                if anio_datetime == diccionario[clave][4]:        
+                    print(f'|{datos[0]:^15}|{datos[1]:^15}|{datos[2]:^12}|{datos[3]:^13}|{datos[4]:^18}|{datos[5]:^20}|')
+                    print(f'+{"-"*98}+')
             
         elif metodo == "5":
             break
