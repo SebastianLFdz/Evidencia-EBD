@@ -1,4 +1,6 @@
 from consultas_Y_reportes import consulta_Y_reporte 
+from registro_libro import registro
+
 
 def menu():
     while True:
@@ -29,7 +31,7 @@ def menu():
         print("\nNOTA: Para indicar que opcion desea realizar introduzca el numero de la opcion deseada")
         opciones=input("\nIngrese la opcion que desee realizar: ")
         if opciones =="1":
-            continue
+            registro()
         elif opciones=="2":
             consulta_Y_reporte()
         elif opciones =="3":
