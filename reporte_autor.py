@@ -48,7 +48,7 @@ def Reportes():
                 anio_datetime = datetime.datetime.strptime(anio_busqueda, "%Y").year
                 clave_anio = list(diccionario.keys())
                 for clave in clave_anio:
-                    if anio_datetime == diccionario[clave][3]:
+                    if anio_datetime == diccionario[clave][4]:
                         print("-" * 100)
                         print("|\t\tTitulo\t\t|\tAutor\t|\tGenero\t|\tAño Publicacion\t|\t\tISBN\t\t|\tFecha de Adquisicion\t|")
                         print("-" * 100)
