@@ -1,6 +1,6 @@
 from reporte_genero import reporte_generos
 from diccionario import diccionario
-
+import datetime
 def Reportes():
     while True:
         print("""  
