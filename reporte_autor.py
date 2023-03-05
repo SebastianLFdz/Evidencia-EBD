@@ -26,15 +26,31 @@ def Reportes():
 
             print(f'+{"-" *102}+')
             print(f"|{'ID':^8}|{'Título':^15}|{'Autor':^10}|{'Género':^12}|{'Año de publicación':^18}|{'ISBN':^13}|{'Fecha de adquisición':^20}|")
+            print(f'+{"-"*102}+')
             for id_libro, datos in diccionario.items():
-                print(f'+{"-" *102}+')
                 print(f'|{id_libro:^8}|{datos[0]:^15}|{datos[1]:^10}|{datos[2]:^12}|{datos[3]:^18}|{datos[4]:^13}|{datos[5]:^20}|')
                 print(f'+{"-"*102}+')
 
         elif metodo == "2":
-            
-            autores = list(diccionario.items())
+            autores = []
+            claves = list(diccionario.keys())
+
+            for clave in claves:
+                autores.append(diccionario[clave][1])
+
+            conjunto_autores = set(autores)
+
+            print("|"+"-"*21+"|")
+            print("| Autores Disponibles |")
+            print("|"+"-"*21+"|")
+
+            for autores_iteracion in conjunto_autores:
+                print(f"|{autores_iteracion:^21}|")
+
+            print("|"+"-"*21+"|")
             autor_busqueda = input("Ingrese el nombre del autor que desee consultar: ").upper()
+
+            autores = list(diccionario.items())
             print(f'+{"-"*107}+')
             print(f"|{'#ID':^8}|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
             print(f'+{"-"*107}+')
