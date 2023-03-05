@@ -20,6 +20,7 @@ def Reportes():
             +-----------------------------------------+\n""")
 
         metodo = input("Ingresa la opción que desees --> ")
+
         if metodo == "1":
             print("Los ejemplares disponibles en este momento son: \n")
 
@@ -31,24 +32,20 @@ def Reportes():
                 print(f'+{"-"*102}+')
 
         elif metodo == "2":
+            
+            autores = list(diccionario.items())
+            autor_busqueda = input("Ingrese el nombre del autor que desee consultar: ").upper()
+            print(f'+{"-"*107}+')
+            print(f"|{'#ID':^8}|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
+            print(f'+{"-"*107}+')
 
-            encabezados = ["ID", "Título", "Autor", "Género", "Año de publicación", "ISBN", "Fecha de adquisición"]
-
-            autor_busqueda = input("Ingrese el nombre del autor que desee consultar: ")
-            libros_autor = []
-
-            for id_libro, datos in diccionario.items():
-                if autor_busqueda in datos[1]:
-                    libros_autor.append([id_libro] + datos)
-            if libros_autor:
-                print(f"Los libros escritos por {autor_busqueda} son: \n")
-                
-            else:
-                print(f"No se encontraron libros escritos por {autor_busqueda}.")
+            for id_libro, datos in autores:
+                if autor_busqueda == diccionario[id_libro][1]:
+                    print(f'|{id_libro:^8}|{datos[0]:^15}|{datos[1]:^15}|{datos[2]:^12}|{datos[3]:^13}|{datos[4]:^18}|{datos[5]:^20}|')
+                    print(f'+{"-"*107}+')
 
         elif metodo == "3":
             reporte_generos()
-
         elif metodo == "4":
             
             anio = list(diccionario.items())
@@ -69,3 +66,4 @@ def Reportes():
         else:
             print("La opción ingresada no es válida, intenta de nuevo: ")
             continue
+        
