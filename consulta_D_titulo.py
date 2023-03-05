@@ -14,6 +14,13 @@ def Consulta_de_titulo():
     +-----------------------------------------+""")
         tipo_consulta=input("Que tipo de consulta deseas realizar? --> ")
         if tipo_consulta=="1":
+            titulos = list(diccionario.values())
+            print(f"+{'-'*20}+")
+            print(f"|{'Titulos disponibles':^20}|")
+            for titulo in titulos:
+                print(f"|{'='*20:^20}|")
+                print(f"|{titulo[0]:^20}|")
+            print(f"+{'='*20}+")
             nombre_titulo=input("ingresa el titulo del libro que deseas vizualizar --> ").upper()
             print(f"+{'-'*117}+")
                         #id            titulo           autor           genero         año de publicacion       fecha de adquisisuin
