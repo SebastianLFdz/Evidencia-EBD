@@ -1,6 +1,7 @@
 from reporte_genero import reporte_generos
 from diccionario import diccionario
 import datetime
+
 def Reportes():
     while True:
         print("""  
@@ -41,11 +42,13 @@ def Reportes():
                     libros_autor.append([id_libro] + datos)
             if libros_autor:
                 print(f"Los libros escritos por {autor_busqueda} son: \n")
-                print(tabulate.tabulate(libros_autor, headers=encabezados))
+                
             else:
                 print(f"No se encontraron libros escritos por {autor_busqueda}.")
+
         elif metodo == "3":
             reporte_generos()
+
         elif metodo == "4":
             
             anio = list(diccionario.items())
