@@ -13,7 +13,6 @@ def Consulta_de_titulo():
     | consultas y reportes          |    3    |   
     +-----------------------------------------+""")
         tipo_consulta=input("Que tipo de consulta deseas realizar? --> ")
-        print(diccionario)
         if tipo_consulta=="1":
             titulos = list(diccionario.values())
             lista1=[]
@@ -39,20 +38,19 @@ def Consulta_de_titulo():
                         print(f"+{'-'*117}+")
 
         elif tipo_consulta=="2":
-            isbn=input("ingresa el ISBN del libro que deseas vizualizar --> ").upper()
-            print(f"+{'-'*117}+")
+            isbn=input("ingresa el ISBN del libro que deseas vizualizar --> ")
+            print(f"+{'-'*122}+")
                         #id            titulo           autor           genero         año de publicacion       fecha de adquisisuin
-            print(f"|{'ID Clave':^8}|{'Titulo':^15}|{'Autor':^15}|{'Genero':^15}|{'Año de publicacion':^20}|{'ISBN':^15}|{'Fecha de adquisicion':^23}|")
-            print(f"+{'='*8:^8}|{'='*15:^15}|{'='*15:^15}|{'='*15:^15}|{'='*20:^20}|{'='*15:^15}|{'='*23:^23}+")
+            print(f"|{'ID Clave':^8}|{'Titulo':^15}|{'Autor':^15}|{'Genero':^15}|{'ISBN':^20}|{'Año de publicacion':^20}|{'Fecha de adquisicion':^23}|")
+            print(f"+{'='*8:^8}|{'='*15:^15}|{'='*15:^15}|{'='*15:^15}|{'='*20:^20}|{'='*20:^20}|{'='*23:^23}+")
             for llaves, valores in diccionario.items():
-                if isbn in diccionario[llaves][4]:
-                    if diccionario[int(llaves)][4] ==isbn:
-                        print(f"|{llaves:^8}|{valores[0]:^15}|{valores[1]:^15}|{valores[2]:^15}|{valores[3]:^20}|{valores[4]:^15}|{valores[5]:^23}|")
-                        print(f"+{'-'*117}+")
+                if isbn in valores:
+                    if diccionario[llaves][3] == isbn:
+                        print(f"|{llaves:^8}|{valores[0]:^15}|{valores[1]:^15}|{valores[2]:^15}|{valores[3]:^20}|{valores[4]:^20}|{valores[5]:^23}|")
+                        print(f"+{'-'*122}+")
 
         elif tipo_consulta =="3":
             break
         else:
             print("Error la opcion ingresada no existe, intentelo de nuevo")
             continue
-Consulta_de_titulo()
