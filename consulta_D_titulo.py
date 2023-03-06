@@ -29,12 +29,12 @@ def Consulta_de_titulo():
             nombre_titulo=input("ingresa el titulo del libro que deseas vizualizar --> ").upper()
             print(f"+{'-'*117}+")
                         #id            titulo           autor           genero         año de publicacion       fecha de adquisisuin
-            print(f"|{'ID Clave':^8}|{'Titulo':^15}|{'Autor':^15}|{'Genero':^15}|{'Año de publicacion':^20}|{'ISBN':^15}|{'Fecha de adquisicion':^23}|")
-            print(f"+{'='*8:^8}|{'='*15:^15}|{'='*15:^15}|{'='*15:^15}|{'='*20:^20}|{'='*15:^15}|{'='*23:^23}+")
+            print(f"|{'ID Clave':^8}|{'Titulo':^15}|{'Autor':^15}|{'Genero':^15}|{'ISBN':^15}|{'Año de publicacion':^20}|{'Fecha de adquisicion':^23}|")
+            print(f"+{'='*8:^8}|{'='*15:^15}|{'='*15:^15}|{'='*15:^15}|{'='*15:^15}|{'='*20:^20}|{'='*23:^23}+")
             for llaves, valores in diccionario.items():
                 if nombre_titulo in diccionario[llaves][0]:
                     if diccionario[llaves][0] == nombre_titulo:
-                        print(f"|{llaves:^8}|{valores[0]:^15}|{valores[1]:^15}|{valores[2]:^15}|{valores[3]:^20}|{valores[4]:^15}|{valores[5]:^23}|")
+                        print(f"|{llaves:^8}|{valores[0]:^15}|{valores[1]:^15}|{valores[2]:^15}|{valores[3]:^15}|{valores[4]:^20}|{valores[5]:^23}|")
                         print(f"+{'-'*117}+")
 
         elif tipo_consulta=="2":

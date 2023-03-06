@@ -20,18 +20,18 @@ def reporte_generos():
     genero_busqueda_mayusculas = genero_busqueda_minusculas.upper()
 
     print(" ")
-    print("-"*86+"+")
-    print(f"|     Titulo\t|  Autor   |  Genero  |     ISBN      | Año Lanzado | Fecha Adquirida |")
-    print("-"*86+"|")
+    print(f'+{"-"*99}+')
+    print(f"|{'Título':^16}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
+    print(f'+{"-"*99}+')
 
     for clave in claves:
         if genero_busqueda_mayusculas == diccionario[clave][2]:
             print(f"|{diccionario[clave][0]:^16}", end="")
-            print(f"|{diccionario[clave][1]:^10}", end="")
-            print(f"|{diccionario[clave][2]:^10}", end="")
-            print(f"|{diccionario[clave][3]:^15}", end="")
-            print(f"|{diccionario[clave][4]:^13}", end="")
-            print(f"|{diccionario[clave][5]:^16}|")
+            print(f"|{diccionario[clave][1]:^15}", end="")
+            print(f"|{diccionario[clave][2]:^12}", end="")
+            print(f"|{diccionario[clave][3]:^13}", end="")
+            print(f"|{diccionario[clave][4]:^18}", end="")
+            print(f"|{diccionario[clave][5]:^20}|")
 
-    print("-"*86+"+")
+    print(f'+{"-"*99}+')
 

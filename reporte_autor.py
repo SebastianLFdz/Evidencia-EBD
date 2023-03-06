@@ -24,12 +24,12 @@ def Reportes():
         if metodo == "1":
             print("Los ejemplares disponibles en este momento son: \n")
 
-            print(f'+{"-" *102}+')
-            print(f"|{'ID':^8}|{'Título':^15}|{'Autor':^10}|{'Género':^12}|{'Año de publicación':^18}|{'ISBN':^13}|{'Fecha de adquisición':^20}|")
-            print(f'+{"-"*102}+')
+            print(f'+{"-" *107}+')
+            print(f"|{'ID':^8}|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
+            print(f'+{"-"*107}+')
             for id_libro, datos in diccionario.items():
-                print(f'|{id_libro:^8}|{datos[0]:^15}|{datos[1]:^10}|{datos[2]:^12}|{datos[3]:^18}|{datos[4]:^13}|{datos[5]:^20}|')
-                print(f'+{"-"*102}+')
+                print(f'|{id_libro:^8}|{datos[0]:^15}|{datos[1]:^15}|{datos[2]:^12}|{datos[3]:^13}|{datos[4]:^18}|{datos[5]:^20}|')
+                print(f'+{"-"*107}+')
 
         elif metodo == "2":
             autores = []
@@ -52,7 +52,7 @@ def Reportes():
 
             autores = list(diccionario.items())
             print(f'+{"-"*107}+')
-            print(f"|{'#ID':^8}|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
+            print(f"|{'ID':^8}|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
             print(f'+{"-"*107}+')
 
             for id_libro, datos in autores:
