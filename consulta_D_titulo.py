@@ -13,6 +13,7 @@ def Consulta_de_titulo():
     | consultas y reportes          |    3    |   
     +-----------------------------------------+""")
         tipo_consulta=input("Que tipo de consulta deseas realizar? --> ")
+        print(diccionario)
         if tipo_consulta=="1":
             titulos = list(diccionario.values())
             lista1=[]
@@ -45,7 +46,7 @@ def Consulta_de_titulo():
             print(f"+{'='*8:^8}|{'='*15:^15}|{'='*15:^15}|{'='*15:^15}|{'='*20:^20}|{'='*15:^15}|{'='*23:^23}+")
             for llaves, valores in diccionario.items():
                 if isbn in diccionario[llaves][4]:
-                    if diccionario[llaves][4] == isbn:
+                    if diccionario[int(llaves)][4] ==isbn:
                         print(f"|{llaves:^8}|{valores[0]:^15}|{valores[1]:^15}|{valores[2]:^15}|{valores[3]:^20}|{valores[4]:^15}|{valores[5]:^23}|")
                         print(f"+{'-'*117}+")
 
@@ -54,4 +55,4 @@ def Consulta_de_titulo():
         else:
             print("Error la opcion ingresada no existe, intentelo de nuevo")
             continue
-                
+Consulta_de_titulo()

@@ -48,7 +48,7 @@ def registro():
                 print(lista_datos)
                 validacion = input(f"¿Todos los datos introducidos estan correctos?\n (S/N): ")
                 if validacion.upper() == "S":
-                    diccionario[id_libro]=[titulo,autor,genero, isbn, año_publicacion, string_adquisicion]
+                    diccionario[id_libro]=[titulo,autor,genero, año_publicacion,isbn,string_adquisicion]
                     break
                 elif validacion.upper() == "N":
                     print(f"¿Cual dato quiere modificar?")
