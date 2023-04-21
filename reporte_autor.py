@@ -66,16 +66,26 @@ def Reportes():
             
             anio = list(diccionario.items())
             anio_busqueda= input("ingrese el año de publicacion del libro a desear: ")
-            anio_datetime = datetime.datetime.strptime(anio_busqueda, "%Y").year
-            
-            print(f'+{"-"*98}+')
-            print(f"|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
-            print(f'+{"-"*98}+')
-            
-            for clave, datos in anio:
-                if anio_datetime == diccionario[clave][4]:        
-                    print(f'|{datos[0]:^15}|{datos[1]:^15}|{datos[2]:^12}|{datos[3]:^13}|{datos[4]:^18}|{datos[5]:^20}|')
-                    print(f'+{"-"*98}+')
+            try:
+
+                anio_datetime = datetime.datetime.strptime(anio_busqueda, "%Y").year
+
+                print(f'+{"-"*98}+')
+                print(f"|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
+                print(f'+{"-"*98}+')
+                    
+                for clave, datos in anio:
+                    if anio_datetime == diccionario[clave][4]:        
+                        print(f'|{datos[0]:^15}|{datos[1]:^15}|{datos[2]:^12}|{datos[3]:^13}|{datos[4]:^18}|{datos[5]:^20}|')
+                        print(f'+{"-"*98}+')
+                    else:
+                        print(f"No se encontro el libro con año {anio_datetime}")
+            except ValueError:
+                print(f"El valor proporcionado ({anio_busqueda}) no es compatible con la operación solicitada")
+            else:
+                print("ejecutado correctamente")
+            finally:
+                print("**  Esta línea siempre se ejecutará  **\n")
             
         elif metodo == "5":
             break
