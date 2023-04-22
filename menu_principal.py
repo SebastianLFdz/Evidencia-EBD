@@ -1,5 +1,7 @@
 from consultas_Y_reportes import consulta_Y_reporte 
 from registro_libro import registro
+from diccionario import diccionario
+import csv
 
 def menu():
     while True:
@@ -34,8 +36,16 @@ def menu():
         elif opciones=="2":
             consulta_Y_reporte()
         elif opciones =="3":
-            print("Gracias por visitar l a biblioteca J. FELIX GARCIA")
-            break
+            descargar = input("Descargar archivo a CSV")
+            if descargar == "S":
+                with open("registros_libreria.csv", "w", newline="") as archivo:
+
+                    grabador = csv.writer(archivo)
+                    grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
+                    grabador.writerows((clave, info[0], info[1], info[2], info[3], info[4], info[5]) for clave, info in diccionario.items())  
+            else:
+                print("Gracias por visitar l a biblioteca J. FELIX GARCIA")
+                break
         else:
             print("\nERROR la opcion elegida no existe.\n\nPor favor indique un numero disponible en el menú")
             continue
