@@ -185,5 +185,5 @@ def registro():
                     print("Respuesta No Aceptada, Vuelva a Ingresarla")
             if validacion.upper() == "S":
                 break 
-    #ingresar_datos()
+    ingresar_datos()
 
