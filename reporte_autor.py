@@ -2,6 +2,8 @@ from reporte_genero import reporte_generos
 from diccionario import diccionario
 import datetime
 from importar_excel import importar_excel
+import os
+import csv
 
 dicc = {}
 
@@ -37,11 +39,26 @@ def Reportes():
                 dicc[id_libro]=[datos[0],datos[1],datos[2],datos[3],datos[4],datos[5]]
             while True:
                 pregunta_exportar = input("¿Quieres exportar tu reporte?\n(S o N)\n-->").upper()
+
                 if pregunta_exportar == "S":
                     pregunta_seleccion = int(input("¿De cual manera lo quiere exportar?\n \
                                             1) CSV \n2) Excel\n-->"))
+
                     if pregunta_seleccion == 1:
-                        print("Aqui va el CSV")
+
+                        if not os.path.exists("catalogo_libreria.csv"):
+                            with open("catalogo_libreria.csv", "w", newline="") as archivo:
+                                grabador = csv.writer(archivo)
+                                grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
+                                grabador.writerows((clave, info[0], info[1], info[2], info[3], info[4], info[5]) for clave, info in diccionario.items())   
+                                print("Archivo ya esta creado")
+                                print("Gracias por visitar la biblioteca J. FELIX GARCIA")
+                                break
+                        
+                        else:
+                            print("EL archivo ya existe")
+                            continue
+                        #print("Aqui va el CSV")
                         break
                     elif pregunta_seleccion == 2:
                         importar_excel(dicc,tipo)
@@ -50,6 +67,7 @@ def Reportes():
                         print("Respuesta Invalida, Vuelva a Intentar")
                 elif pregunta_exportar == "N":
                     print("No se exporto ningun archivo")
+                    break
                 else:
                     print("Respuesta Invalida, Vuelva a Intentar")
             
@@ -92,7 +110,24 @@ def Reportes():
                 if pregunta_exportar == "S":
                     pregunta_seleccion = int(input("¿De cual manera lo quiere exportar?\n \
                                             1) CSV \n2) Excel\n-->"))
+
                     if pregunta_seleccion == 1:
+
+                        if not os.path.exists("autor_libreria.csv"):
+
+                            
+                                with open("autor_libreria.csv", "w", newline="") as archivo:
+                                    grabador = csv.writer(archivo)
+                                    grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
+                                    if autor_busqueda == diccionario[id_libro][1]:
+                                        for clave, info in diccionario.items():
+                                            grabador.writerows(clave, info[0], info[1], info[2], info[3], info[4], info[5])   
+                                            print("Archivo ya esta creado")
+                                            print("Gracias por visitar la biblioteca J. FELIX GARCIA")
+                                            break
+                        else:
+                            print("EL archivo ya existe")
+                            continue
                         print("Aqui va el CSV")
                         break
                     elif pregunta_seleccion == 2:
@@ -133,6 +168,7 @@ def Reportes():
                         pregunta_seleccion = int(input("¿De cual manera lo quiere exportar?\n \
                                                 1) CSV \n2) Excel\n-->"))
                         if pregunta_seleccion == 1:
+
                             print("Aqui va el CSV")
                             break
                         elif pregunta_seleccion == 2:

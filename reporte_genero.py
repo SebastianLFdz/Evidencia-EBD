@@ -51,6 +51,7 @@ def reporte_generos():
                                         1) CSV \n2) Excel\n-->"))
                 if pregunta_seleccion == 1:
                     print("Aqui va el CSV")
+                    
                     break
                 elif pregunta_seleccion == 2:
                     importar_excel(dicc,tipo)
