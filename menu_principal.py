@@ -1,8 +1,12 @@
 from consultas_Y_reportes import consulta_Y_reporte 
 from registro_libro import registro
-import sys
+from diccionario import diccionario
+import csv
+import os 
+
 def menu():
-    print("""
+    while True:
+        print("""
                      __,                     ,__
                   __/==+\ J. FELIX GARCIA /+==\__
                     "  "`  ===============  '"  "
@@ -26,8 +30,7 @@ def menu():
                 1.- Registrar un nuevo ejemplar
                 2.- Consultar y reportes
                 3.- Salir""")
-    print("\nNOTA: Para indicar que opcion desea realizar introduzca el numero de la opcion deseada")
-    while True:
+        print("\nNOTA: Para indicar que opcion desea realizar introduzca el numero de la opcion deseada")
         try:
             opciones=int(input("\nIngrese la opcion que desee realizar: "))
             if opciones ==1:
@@ -35,19 +38,12 @@ def menu():
             elif opciones==2:
                 consulta_Y_reporte()
             elif opciones ==3:
+                print("Gracias por visitar la biblioteca J. FELIX GARCIA")
                 break
-            else:
-                print("\nERROR la opcion elegida no existe.\n\nPor favor indique un numero disponible en el menú")
-                continue
         except ValueError: 
-            print("Hay un pequeño error de sintaxis, introduciste ua letra o un simbolo en lugar de un numero")
-        except Exception:
-            print("Error hay un error intentalo de nuevo")
-            print(f"Ocurrió un problema {sys.exc_info()[0]}")
-            excepcion = sys.exc_info()
-            for elemento in excepcion:
-                print(elemento)
+            print("Hay un pequeño error de sintaxis, introduciste una letra o un simbolo en lugar de un numero")
+       # except Exception:
+            #print("Error hay un error intentalo de nuevo")
 
-        
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 menu()
