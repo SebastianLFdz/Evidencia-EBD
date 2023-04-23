@@ -50,22 +50,18 @@ def Reportes():
             print("|"+"-"*21+"|")
             autor_busqueda = input("Ingrese el nombre del autor que desee consultar: ").upper()
 
-            try:
-                autores = list(diccionario.items())
-                print(f'+{"-"*107}+')
-                print(f"|{'ID':^8}|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
-                print(f'+{"-"*107}+')
-                n=0
-                for id_libro, datos in autores:
-                    if autor_busqueda == diccionario[id_libro][1]:
-                        print(f'|{id_libro:^8}|{datos[0]:^15}|{datos[1]:^15}|{datos[2]:^12}|{datos[3]:^13}|{datos[4]:^18}|{datos[5]:^20}|')
-                        print(f'+{"-"*107}+')
-                        n+=1
-                if n == 0:
+            autores = list(diccionario.items())
+            print(f'+{"-"*107}+')
+            print(f"|{'ID':^8}|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
+            print(f'+{"-"*107}+')
+            n=0
+            for id_libro, datos in autores:
+                if autor_busqueda == diccionario[id_libro][1]:
+                    print(f'|{id_libro:^8}|{datos[0]:^15}|{datos[1]:^15}|{datos[2]:^12}|{datos[3]:^13}|{datos[4]:^18}|{datos[5]:^20}|')
+                    print(f'+{"-"*107}+')
+                    n+=1
+            if n == 0:
                     print("| no se encontro el autor unu|")
-            except ValueError:
-                print(f"El valor proporcionado ({autores}) no es compatible con la operación solicitada")
-
         elif metodo == "3":
             reporte_generos()
         elif metodo == "4":

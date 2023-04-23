@@ -39,19 +39,21 @@ def Consulta_de_titulo():
 
         elif tipo_consulta=="2":
             isbn=input("ingresa el ISBN del libro que deseas vizualizar --> ")
-            try:
-                print(f"+{'-'*122}+")
-                            #id            titulo           autor           genero         año de publicacion       fecha de adquisisuin
-                print(f"|{'ID Clave':^8}|{'Titulo':^15}|{'Autor':^15}|{'Genero':^15}|{'ISBN':^20}|{'Año de publicacion':^20}|{'Fecha de adquisicion':^23}|")
-                print(f"+{'='*8:^8}|{'='*15:^15}|{'='*15:^15}|{'='*15:^15}|{'='*20:^20}|{'='*20:^20}|{'='*23:^23}+")
-                for llaves, valores in diccionario.items():
-                    if isbn in valores:
-                        if diccionario[llaves][3] == isbn:
-                            print(f"|{llaves:^8}|{valores[0]:^15}|{valores[1]:^15}|{valores[2]:^15}|{valores[3]:^20}|{valores[4]:^20}|{valores[5]:^23}|")
-                            print(f"+{'-'*122}+")
-            except ValueError:
-                print(f"El valor proporcionado ({isbn}) no es compatible con la operación solicitada")
 
+            print(f"+{'-'*122}+")
+                        #id            titulo           autor           genero         año de publicacion       fecha de adquisisuin
+            print(f"|{'ID Clave':^8}|{'Titulo':^15}|{'Autor':^15}|{'Genero':^15}|{'ISBN':^20}|{'Año de publicacion':^20}|{'Fecha de adquisicion':^23}|")
+            print(f"+{'='*8:^8}|{'='*15:^15}|{'='*15:^15}|{'='*15:^15}|{'='*20:^20}|{'='*20:^20}|{'='*23:^23}+")
+            n=0
+            for llaves, valores in diccionario.items():
+                if isbn in valores:
+                    if diccionario[llaves][3] == isbn:
+                        print(f"|{llaves:^8}|{valores[0]:^15}|{valores[1]:^15}|{valores[2]:^15}|{valores[3]:^20}|{valores[4]:^20}|{valores[5]:^23}|")
+                        print(f"+{'-'*122}+")
+                        n+=1
+            if n == 0:
+                print("| no se encontro el autor unu|")
+            
         elif tipo_consulta =="3":
             break
         else:
