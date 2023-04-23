@@ -52,7 +52,7 @@ def Consulta_de_titulo():
                         print(f"+{'-'*122}+")
                         n+=1
             if n == 0:
-                print("| no se encontro el autor unu|")
+                print("| no se encontro el libro unu|")
             
         elif tipo_consulta =="3":
             break

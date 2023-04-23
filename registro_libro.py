@@ -28,25 +28,33 @@ def registro():
             while True:
                 print("+"+"-"*60+"+")
                 fecha_publicacion=input(f"Ingresa la fecha de publicacion del libro {titulo} (dd/mmyyyy):\n-->")
-                fecha_publicacion_procesada = datetime.datetime.strptime(fecha_publicacion, "%d/%m/%Y").date()
-                publicacion = fecha_publicacion_procesada > fecha_actual
-                if publicacion == True:
-                    print(f"La Fecha {fecha_publicacion_procesada}, no es valida, vuelva a ingresarla")
-                else:
-                    while True:
-                        print("+"+"-"*60+"+")
-                        fecha_adquisicion=input(f"Ingresa la fecha de adquisicion del libro {titulo} (dd/mm/yyyy):\n-->")
-                        fecha_adquisicion_procesada = datetime.datetime.strptime(fecha_adquisicion, "%d/%m/%Y").date()
-                        adquisicion = fecha_adquisicion_procesada > fecha_actual
-                        if adquisicion == True:
-                            print(f"La Fecha {fecha_adquisicion_procesada}, no es valida, vuelva a ingresarla")
+                try:                
+                    fecha_publicacion_procesada = datetime.datetime.strptime(fecha_publicacion, "%d/%m/%Y").date()
+                
+                    publicacion = fecha_publicacion_procesada > fecha_actual
+                    if publicacion == True:
+                        print(f"La Fecha {fecha_publicacion_procesada}, no es valida, vuelva a ingresarla")
+                    else:
+                        while True:
+                            print("+"+"-"*60+"+")
+                            fecha_adquisicion=input(f"Ingresa la fecha de adquisicion del libro {titulo} (dd/mm/yyyy):\n-->")
+                            fecha_adquisicion_procesada = datetime.datetime.strptime(fecha_adquisicion, "%d/%m/%Y").date()
+                            try:
+                                adquisicion = fecha_adquisicion_procesada > fecha_actual
+                                if adquisicion == True:
+                                    print(f"La Fecha {fecha_adquisicion_procesada}, no es valida, vuelva a ingresarla")
+                                else:
+                                    break
+                            except ValueError:
+                                print(f"El valor proporcionado ({fecha_adquisicion}) no es compatible con la operación solicitada")
+
+                        comparacion = fecha_adquisicion_procesada < fecha_publicacion_procesada
+                        if comparacion == True:
+                            print(f"La Fecha de Adquisicion no puede ser mayor a la Fecha de Publicacion")
                         else:
                             break
-                    comparacion = fecha_adquisicion_procesada < fecha_publicacion_procesada
-                    if comparacion == True:
-                        print(f"La Fecha de Adquisicion no puede ser mayor a la Fecha de Publicacion")
-                    else:
-                        break
+                except ValueError:
+                    print(f"El valor proporcionado ({fecha_publicacion}) no es compatible con la operación solicitada")
             año_publicacion = fecha_publicacion_procesada.year 
             string_adquisicion = str(fecha_adquisicion_procesada)
             while True:
@@ -81,24 +89,34 @@ def registro():
                     elif dato_modificar == 5:
                         while True:
                             fecha_publicacion=input(f"Ingresa el nueva fecha de publicacion del libro {titulo} (dd/mm/yyyy): ")
-                            fecha_publicacion_procesada = datetime.datetime.strptime(fecha_publicacion, "%d/%m/%Y").date()
-                            if fecha_publicacion_procesada < fecha_actual:
-                                año_publicacion = fecha_publicacion_procesada.year 
-                                break
-                            else:
-                                print(f"La Fecha {fecha_publicacion_procesada}, no es valida, vuelva a ingresarla")
+                            
+                            try:
+                                fecha_publicacion_procesada = datetime.datetime.strptime(fecha_publicacion, "%d/%m/%Y").date()
+                                if fecha_publicacion_procesada < fecha_actual:
+                                    año_publicacion = fecha_publicacion_procesada.year 
+                                    break
+                                else:
+                                    print(f"La Fecha {fecha_publicacion_procesada}, no es valida, vuelva a ingresarla")
+                            
+                            except ValueError:
+                                print(f"La Fecha de Adquisicion no puede ser mayor a la Fecha de Publicacion")
+
                     elif dato_modificar == 6:
                         while True:
                             fecha_adquisicion=input(f"Ingresa la nueva fecha de adquisicion del libro {titulo}: ")
-                            fecha_adquisicion_procesada = datetime.datetime.strptime(fecha_adquisicion, "%d/%m/%Y").date()
-                            if fecha_adquisicion_procesada < fecha_actual:
-                                if fecha_adquisicion_procesada > fecha_publicacion_procesada:
-                                    string_adquisicion = str(fecha_adquisicion_procesada)
-                                    break
+                            try:
+                                fecha_adquisicion_procesada = datetime.datetime.strptime(fecha_adquisicion, "%d/%m/%Y").date()
+                                if fecha_adquisicion_procesada < fecha_actual:
+                                    if fecha_adquisicion_procesada > fecha_publicacion_procesada:
+                                        string_adquisicion = str(fecha_adquisicion_procesada)
+                                        break
+                                    else:
+                                        print(f"La Fecha de Adquisicion no puede ser mayor a la Fecha de Publicacion")
                                 else:
-                                    print(f"La Fecha de Adquisicion no puede ser mayor a la Fecha de Publicacion")
-                            else:
-                                print(f"La Fecha {fecha_adquisicion_procesada}, no es valida, vuelva a ingresarla")
+                                    print(f"La Fecha {fecha_adquisicion_procesada}, no es valida, vuelva a ingresarla")
+                            except ValueError:
+                                print(f"La Fecha de Adquisicion no puede ser mayor a la Fecha de Publicacion")
+
                     else:
                         print("Valor erroneo, Vuelva a Intentarlo")
                 else:

@@ -84,10 +84,6 @@ def Reportes():
                             print(f"No se encontro el libro con año {anio_datetime}")
             except ValueError:
                 print(f"El valor proporcionado ({anio_busqueda}) no es compatible con la operación solicitada")
-            else:
-                print("ejecutado correctamente")
-            finally:
-                print("**  Esta línea siempre se ejecutará  **\n")
                 
         elif metodo == "5":
             break
