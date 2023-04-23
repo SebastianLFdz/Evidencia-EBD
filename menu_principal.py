@@ -2,6 +2,7 @@ from consultas_Y_reportes import consulta_Y_reporte
 from registro_libro import registro
 from diccionario import diccionario
 import csv
+import os 
 
 def menu():
     print("""
@@ -41,12 +42,17 @@ def menu():
                     print("Introduce una S/N segun lo deseado ")
                     descargar = input("Descargar archivo a CSV: ").upper()
                     if descargar == "S":
-                        with open("registros_libreria.csv", "w", newline="") as archivo:
+                        if not os.path.exists("registros_libreria.csv"):
+                            with open("registros_libreria.csv", "w", newline="") as archivo:
 
-                            grabador = csv.writer(archivo)
-                            grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
-                            grabador.writerows((clave, info[0], info[1], info[2], info[3], info[4], info[5]) for clave, info in diccionario.items())  
-                    
+                                grabador = csv.writer(archivo)
+                                grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
+                                grabador.writerows((clave, info[0], info[1], info[2], info[3], info[4], info[5]) for clave, info in diccionario.items())  
+                                print("Archivo ya esta creado") 
+                                print("Gracias por visitar la biblioteca J. FELIX GARCIA")
+                                break
+                        else:
+                            print("EL archivo ya existe paps")
                     elif descargar == "N":
                         print("Gracias por visitar la biblioteca J. FELIX GARCIA")
                         break
