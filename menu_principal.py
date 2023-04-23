@@ -1,6 +1,6 @@
 from consultas_Y_reportes import consulta_Y_reporte 
 from registro_libro import registro
-
+import sys
 def menu():
     print("""
                      __,                     ,__
@@ -43,6 +43,10 @@ def menu():
             print("Hay un pequeño error de sintaxis, introduciste ua letra o un simbolo en lugar de un numero")
         except Exception:
             print("Error hay un error intentalo de nuevo")
+            print(f"Ocurrió un problema {sys.exc_info()[0]}")
+            excepcion = sys.exc_info()
+            for elemento in excepcion:
+                print(elemento)
 
         
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

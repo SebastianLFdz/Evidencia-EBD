@@ -9,7 +9,7 @@ def importar_excel(diccionario,tipo):
     biblioteca = openpyxl.Workbook()
     numero = 2
     negritas = Font(bold = True)
-    dia = datetime.datetime.date()
+    #dia = datetime.datetime.date()
 
     #Asignacio de Negritas y Nombres
     primera = biblioteca["Sheet"]
@@ -71,4 +71,4 @@ def importar_excel(diccionario,tipo):
         typo = "Por Año de Publicacion"
 
     #Guardar Archivo
-    biblioteca.save(f"Reporte de Libros {typo} {dia} .xlsx")
+    biblioteca.save(f"Reporte de Libros {typo} .xlsx")
