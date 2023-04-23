@@ -85,7 +85,12 @@ def registro():
                         _genero=input(f"Ingresa el nuevo genero del libro {titulo}:  ")
                         genero = _genero.upper()
                     elif dato_modificar == 4:
-                        isbn=input(f"Ingresa la nuev clave ISBN {titulo}: ")
+                        while True:
+                            isbn=input(f"Ingresa la nuev clave ISBN {titulo}: ")
+                            if len(isbn) == 13:
+                                break
+                            else:
+                                print("¬El ISBN debe tener 13 caracteres, Vuelva a Ingresarlos")
                     elif dato_modificar == 5:
                         while True:
                             fecha_publicacion=input(f"Ingresa el nueva fecha de publicacion del libro {titulo} (dd/mm/yyyy): ")
@@ -97,7 +102,7 @@ def registro():
                                     break
                                 else:
                                     print(f"La Fecha {fecha_publicacion_procesada}, no es valida, vuelva a ingresarla")
-                            
+                
                             except ValueError:
                                 print(f"La Fecha de Adquisicion no puede ser mayor a la Fecha de Publicacion")
 
