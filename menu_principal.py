@@ -3,6 +3,7 @@ from registro_libro import registro
 from diccionario import diccionario
 import csv
 
+diccionario = {1: ['AGUA', 'SEBAS', 'S', '1234567890123', 2001, '2002-09-10']}
 def menu():
     while True:
         print("""
