@@ -1,5 +1,7 @@
 from diccionario import diccionario
 from importar_excel import importar_excel
+import os
+import csv
 
 dicc = {}
 
@@ -36,7 +38,7 @@ def reporte_generos():
             print(f"|{diccionario[clave][3]:^13}", end="")
             print(f"|{diccionario[clave][4]:^18}", end="")
             print(f"|{diccionario[clave][5]:^20}|")
-            n+=1
+            coincidencia+=1
             dicc[clave]=[diccionario[clave][0],
                          diccionario[clave][1],
                          diccionario[clave][2],
@@ -50,8 +52,17 @@ def reporte_generos():
                 pregunta_seleccion = int(input("¿De cual manera lo quiere exportar?\n \
                                         1) CSV \n2) Excel\n-->"))
                 if pregunta_seleccion == 1:
-                    print("Aqui va el CSV")
-                    
+                    if not os.path.exists("reporte_genero.csv"):
+                        with open("reporte_genero.csv", "w", newline="") as archivo:
+                            if genero_busqueda_mayusculas == diccionario[clave][1]:
+                                grabador = csv.writer(archivo)
+                                grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
+                                grabador.writerows([(clave, info[0], info[1], info[2], info[3], info[4], info[5])for clave, info in dicc.items()])
+                                print("Archivo ya esta creado")
+                                print("Gracias por visitar la biblioteca J. FELIX GARCIA")
+                    else:
+                        print("EL archivo ya existe")
+                        continue
                     break
                 elif pregunta_seleccion == 2:
                     importar_excel(dicc,tipo)
@@ -66,4 +77,3 @@ def reporte_generos():
     if coincidencia == 0:
         print("No se encontro el libro por genero")
     print(f'+{"-"*99}+')
-

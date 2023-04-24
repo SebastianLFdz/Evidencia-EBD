@@ -49,7 +49,7 @@ def Reportes():
                             with open("catalogo_libreria.csv", "w", newline="") as archivo:
                                 grabador = csv.writer(archivo)
                                 grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
-                                grabador.writerows([(clave, info[0], info[1], info[2], info[3], info[4], info[5]) for clave, info in diccionario.items()])
+                                grabador.writerows([(clave, info[0], info[1], info[2], info[3], info[4], info[5]) for clave, info in dicc.items()])
                                 print("Archivo ya esta creado")
                                 print("Gracias por visitar la biblioteca J. FELIX GARCIA")
                         
