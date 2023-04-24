@@ -45,25 +45,20 @@ def reporte_generos():
                          diccionario[clave][3],
                          diccionario[clave][4],
                          diccionario[clave][5]]
+    print(f'+{"-"*99}+')
     if coincidencia != 0:
         while True:
             pregunta_exportar = input("¿Quieres exportar tu reporte?\n(S o N)\n-->").upper()
             if pregunta_exportar == "S":
-                pregunta_seleccion = int(input("¿De cual manera lo quiere exportar?\n \
-                                        1) CSV \n2) Excel\n-->"))
+                pregunta_seleccion = int(input("¿De cual manera lo quiere exportar?\n1) CSV \n2) Excel\n-->"))
                 if pregunta_seleccion == 1:
-                    if not os.path.exists("reporte_genero.csv"):
-                        with open("reporte_genero.csv", "w", newline="") as archivo:
-                            if genero_busqueda_mayusculas == diccionario[clave][1]:
-                                grabador = csv.writer(archivo)
-                                grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
-                                grabador.writerows([(clave, info[0], info[1], info[2], info[3], info[4], info[5])for clave, info in dicc.items()])
-                                print("Archivo ya esta creado")
-                                print("Gracias por visitar la biblioteca J. FELIX GARCIA")
-                    else:
-                        print("EL archivo ya existe")
-                        continue
-                    break
+                    with open("reporte_genero.csv", "w", newline="") as archivo:
+                        grabador = csv.writer(archivo)
+                        grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
+                        grabador.writerows([(clave, info[0], info[1], info[2], info[3], info[4], info[5])for clave, info in dicc.items()])
+                        print("El Archivo fue creado exitosamente")
+                        print("Gracias por visitar la biblioteca J. FELIX GARCIA")
+                        break
                 elif pregunta_seleccion == 2:
                     importar_excel(dicc,tipo)
                     break

@@ -4,6 +4,18 @@ from diccionario import diccionario
 import csv
 import os 
 
+
+try:   
+    with open("registros_libreria.csv","r", newline="") as archivo:
+        lector = csv.reader(archivo)
+        for id, titulo, nombre, genero, isbn, año, fecha in lector:
+            diccionario[int(id)] = ([titulo, nombre, genero, isbn, año, fecha])
+        
+except FileNotFoundError:
+    pass
+except Exception:
+    print("Ocurrio un Error Inesperado al buscar el respaldo")
+
 def menu():
     while True:
         print("""
@@ -42,8 +54,14 @@ def menu():
                 break
         except ValueError: 
             print("Hay un pequeño error de sintaxis, introduciste una letra o un simbolo en lugar de un numero")
-       # except Exception:
-            #print("Error hay un error intentalo de nuevo")
+        except Exception:
+            print("Error hay un error intentalo de nuevo")
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 menu()
+
+datos_a_grabar = dict()
+archivo = open("catalogo_libreria.csv","w", newline="")
+grabador = csv.writer(archivo)
+grabador.writerows([(id,listado[0],listado[1],listado[2],listado[3],listado[4],listado[5]) for id,listado in diccionario.items()])
+archivo.close()
