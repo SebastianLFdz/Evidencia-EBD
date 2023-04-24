@@ -147,34 +147,44 @@ def Reportes():
                 print(f'+{"-"*98}+')
                 print(f"|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
                 print(f'+{"-"*98}+')
-                coincidenica = 0
+                coincidencia = 0
                 for clave, datos in anio:
                     if anio_datetime == diccionario[clave][4]:        
                         print(f'|{datos[0]:^15}|{datos[1]:^15}|{datos[2]:^12}|{datos[3]:^13}|{datos[4]:^18}|{datos[5]:^20}|')
                         print(f'+{"-"*98}+')
                         dicc[clave]=[datos[0],datos[1],datos[2],datos[3],datos[4],datos[5]]
                         coincidencia += 1
-                if coincidenica == 0:
-                    print("no hay libros en el año")
+                if coincidencia != 0:
 
-                while True:
-                    pregunta_exportar = input("¿Quieres exportar tu reporte?\n(S o N)\n-->").upper()
-                    if pregunta_exportar == "S":
-                        pregunta_seleccion = int(input("¿De cual manera lo quiere exportar?\n \
-                                                1) CSV \n2) Excel\n-->"))
-                        if pregunta_seleccion == 1:
-
-                            print("Aqui va el CSV")
-                            break
-                        elif pregunta_seleccion == 2:
-                            importar_excel(dicc,tipo)
-                            break
+                    while True:
+                        pregunta_exportar = input("¿Quieres exportar tu reporte?\n(S o N)\n-->").upper()
+                        if pregunta_exportar == "S":
+                            pregunta_seleccion = int(input("¿De cual manera lo quiere exportar?\n \
+                                                    1) CSV \n2) Excel\n-->"))
+                            if pregunta_seleccion == 1:
+                                
+                                if not os.path.exists("anio_publicacion_libreria.csv"):
+                                    with open("anio_publicacion_libreria.csv", "w", newline="") as archivo:
+                                        if anio_busqueda == diccionario[clave][4]:
+                                            grabador = csv.writer(archivo)
+                                            grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
+                                            grabador.writerows([(clave, info[0], info[1], info[2], info[3], info[4], info[5]) for clave, info in dicc.items()])
+                                            print("Archivo ya esta creado")
+                                            print("Gracias por visitar la biblioteca J. FELIX GARCIA")
+                                else:
+                                    print("EL archivo ya existe")
+                                break
+                            elif pregunta_seleccion == 2:
+                                importar_excel(dicc,tipo)
+                                break
+                            else:
+                                print("Respuesta Invalida, Vuelva a Intentar")
+                        elif pregunta_exportar == "N":
+                            print("No se exporto ningun archivo")
                         else:
                             print("Respuesta Invalida, Vuelva a Intentar")
-                    elif pregunta_exportar == "N":
-                        print("No se exporto ningun archivo")
-                    else:
-                        print("Respuesta Invalida, Vuelva a Intentar")
+                else:
+                    print("Respuesta invalida, vuelva a intentar")
             except ValueError:
                 print(f"El valor proporcionado ({anio_busqueda}) no es compatible con la operación solicitada")
                 
