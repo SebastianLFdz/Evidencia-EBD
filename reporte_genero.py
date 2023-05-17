@@ -1,4 +1,4 @@
-from diccionario import diccionario
+from diccionario import diccionario_autores
 from importar_excel import importar_excel
 import os
 import csv
@@ -8,9 +8,9 @@ dicc = {}
 def reporte_generos():
     tipo = 2
     generos = []
-    claves = list(diccionario.keys())
+    claves = list(diccionario_autores.keys())
     for clave in claves:
-        generos.append(diccionario[clave][2])
+        generos.append(diccionario_autores[clave][2])
     conjunto_generos = set(generos)
 
     print("|"+"-"*21+"|")
@@ -31,20 +31,20 @@ def reporte_generos():
 
     coincidencia=0
     for clave in claves:
-        if genero_busqueda_mayusculas == diccionario[clave][2]:
-            print(f"|{diccionario[clave][0]:^16}", end="")
-            print(f"|{diccionario[clave][1]:^15}", end="")
-            print(f"|{diccionario[clave][2]:^12}", end="")
-            print(f"|{diccionario[clave][3]:^13}", end="")
-            print(f"|{diccionario[clave][4]:^18}", end="")
-            print(f"|{diccionario[clave][5]:^20}|")
+        if genero_busqueda_mayusculas == diccionario_autores[clave][2]:
+            print(f"|{diccionario_autores[clave][0]:^16}", end="")
+            print(f"|{diccionario_autores[clave][1]:^15}", end="")
+            print(f"|{diccionario_autores[clave][2]:^12}", end="")
+            print(f"|{diccionario_autores[clave][3]:^13}", end="")
+            print(f"|{diccionario_autores[clave][4]:^18}", end="")
+            print(f"|{diccionario_autores[clave][5]:^20}|")
             coincidencia+=1
-            dicc[clave]=[diccionario[clave][0],
-                         diccionario[clave][1],
-                         diccionario[clave][2],
-                         diccionario[clave][3],
-                         diccionario[clave][4],
-                         diccionario[clave][5]]
+            dicc[clave]=[diccionario_autores[clave][0],
+                         diccionario_autores[clave][1],
+                         diccionario_autores[clave][2],
+                         diccionario_autores[clave][3],
+                         diccionario_autores[clave][4],
+                         diccionario_autores[clave][5]]
     print(f'+{"-"*99}+')
     if coincidencia != 0:
         while True:

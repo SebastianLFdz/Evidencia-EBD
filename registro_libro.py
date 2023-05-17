@@ -1,4 +1,4 @@
-from diccionario import diccionario
+from diccionario import diccionario_autores
 import datetime
 import sys
 import sqlite3
@@ -13,7 +13,7 @@ def registro():
 
         lista_datos = []
         while True:
-            id_libro=max(diccionario, default=0)+1
+            id_libro=max(diccionario_autores, default=0)+1
             while True:
                 _titulo=input("Ingresa el titulo del libro que deseas registrar:\n-->")
                 if _titulo.isdigit():
@@ -115,7 +115,7 @@ def registro():
                     except Exception:
                         print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
 
-                    diccionario[id_libro]=[titulo,autor,genero, isbn, año_publicacion, string_adquisicion]
+                    diccionario_autores[id_libro]=[titulo,autor,genero, isbn, año_publicacion, string_adquisicion]
                     break
                 elif validacion.upper() == "N":
                     print("+"+"-"*60+"+")

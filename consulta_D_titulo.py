@@ -1,4 +1,4 @@
-from diccionario import diccionario
+from diccionario import diccionario_autores
 def Consulta_de_titulo():
     while True:
         print("""  
@@ -16,7 +16,7 @@ def Consulta_de_titulo():
         if tipo_consulta=="1":
             #Despliegue de los titulos disponibles.#
 
-            titulos = list(diccionario.values())
+            titulos = list(diccionario_autores.values())
             lista1=[]
             print(f"+{'-'*20}+")
             print(f"|{'Titulos disponibles':^20}|")
@@ -37,9 +37,9 @@ def Consulta_de_titulo():
             print(f"|{'ID Clave':^8}|{'Titulo':^15}|{'Autor':^15}|{'Genero':^15}|{'ISBN':^15}|{'Año de publicacion':^20}|{'Fecha de adquisicion':^23}|")
             print(f"+{'='*8:^8}|{'='*15:^15}|{'='*15:^15}|{'='*15:^15}|{'='*15:^15}|{'='*20:^20}|{'='*23:^23}+")
             coincidencia = 0
-            for llaves, valores in diccionario.items():
-                if nombre_titulo in diccionario[llaves][0]:
-                    if diccionario[llaves][0] == nombre_titulo:
+            for llaves, valores in diccionario_autores.items():
+                if nombre_titulo in diccionario_autores[llaves][0]:
+                    if diccionario_autores[llaves][0] == nombre_titulo:
                         print(f"|{llaves:^8}|{valores[0]:^15}|{valores[1]:^15}|{valores[2]:^15}|{valores[3]:^15}|{valores[4]:^20}|{valores[5]:^23}|")
                         print(f"+{'-'*117}+")
                         coincidencia +=1
@@ -54,9 +54,9 @@ def Consulta_de_titulo():
             print(f"|{'ID Clave':^8}|{'Titulo':^15}|{'Autor':^15}|{'Genero':^15}|{'ISBN':^20}|{'Año de publicacion':^20}|{'Fecha de adquisicion':^23}|")
             print(f"+{'='*8:^8}|{'='*15:^15}|{'='*15:^15}|{'='*15:^15}|{'='*20:^20}|{'='*20:^20}|{'='*23:^23}+")
             n=0
-            for llaves, valores in diccionario.items():
+            for llaves, valores in diccionario_autores.items():
                 if isbn in valores:
-                    if diccionario[llaves][3] == isbn:
+                    if diccionario_autores[llaves][3] == isbn:
                         print(f"|{llaves:^8}|{valores[0]:^15}|{valores[1]:^15}|{valores[2]:^15}|{valores[3]:^20}|{valores[4]:^20}|{valores[5]:^23}|")
                         print(f"+{'-'*122}+")
                         n+=1
