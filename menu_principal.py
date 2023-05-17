@@ -82,6 +82,10 @@ def menu():
             elif opciones ==3:
                 print("Gracias por visitar la biblioteca J. FELIX GARCIA")
                 break
+            elif opciones ==4:
+                pass
+            elif opciones==5:
+                registro_genero()
         except ValueError: 
             print("Hay un pequeño error de sintaxis, introduciste una letra o un simbolo en lugar de un numero")
         except Exception:
