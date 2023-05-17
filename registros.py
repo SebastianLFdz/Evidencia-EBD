@@ -10,8 +10,8 @@ def registros_autores():
         while True:
             print("Registro de autor")
             id_autor = max(diccionario_autores, default=0)+1
-            nombre_autor = ("Ingrese el nombre del autor: ").upper()
-            apellido_autor = ("Ingrese el apellido del autor:").upper()
+            nombre_autor = input("Ingrese el nombre del autor: ").upper()
+            apellido_autor = input("Ingrese el apellido del autor: ").upper()
             lista_autores = [nombre_autor,apellido_autor]
             diccionario_autores[id_autor] = tuple(lista_autores)
             print("Se registro correctamente el nuevo autor en la memoria interna")
@@ -45,7 +45,7 @@ def registros_generos():
         while True:
             id_genero=max(diccionario_generos,default=0)+1
             nuevo_genero=input("ingresa el nuevo genero a registrar: ").upper()
-            diccionario_generos[id_genero]= nuevo_genero
+            diccionario_generos[id_genero]= [nuevo_genero]
             ##SQL
             with sqlite3.connect("JFelix_Garcia_Biblioteca.db") as conn:
                 cursos_autor = conn.cursor()

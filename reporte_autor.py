@@ -1,5 +1,5 @@
 from reporte_genero import reporte_generos
-from diccionario import diccionario_autores
+from diccionario import diccionario_libros
 import datetime
 from importar_excel import importar_excel
 import os
@@ -33,7 +33,7 @@ def Reportes():
             print(f'+{"-" *107}+')
             print(f"|{'ID':^8}|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
             print(f'+{"-"*107}+')
-            for id_libro, datos in diccionario_autores.items():
+            for id_libro, datos in diccionario_libros.items():
                 print(f'|{id_libro:^8}|{datos[0]:^15}|{datos[1]:^15}|{datos[2]:^12}|{datos[3]:^13}|{datos[4]:^18}|{datos[5]:^20}|')
                 print(f'+{"-"*107}+')
                 dicc[id_libro]=[datos[0],datos[1],datos[2],datos[3],datos[4],datos[5]]
@@ -64,10 +64,10 @@ def Reportes():
         elif metodo == "2":
             tipo = 1
             autores = []
-            claves = list(diccionario_autores.keys())
+            claves = list(diccionario_libros.keys())
 
             for clave in claves:
-                autores.append(diccionario_autores[clave][1])
+                autores.append(diccionario_libros[clave][1])
 
             conjunto_autores = set(autores)
 
@@ -81,13 +81,13 @@ def Reportes():
             print("|"+"-"*21+"|")
             autor_busqueda = input("Ingrese el nombre del autor que desee consultar: ").upper()
 
-            autores = list(diccionario_autores.items())
+            autores = list(diccionario_libros.items())
             print(f'+{"-"*107}+')
             print(f"|{'ID':^8}|{'Título':^15}|{'Autor':^15}|{'Género':^12}|{'ISBN':^13}|{'Año de publicación':^18}|{'Fecha de adquisición':^20}|")
             print(f'+{"-"*107}+')
             n=0
             for id_libro, datos in autores:
-                if autor_busqueda == diccionario_autores[id_libro][1]:
+                if autor_busqueda == diccionario_libros[id_libro][1]:
                     print(f'|{id_libro:^8}|{datos[0]:^15}|{datos[1]:^15}|{datos[2]:^12}|{datos[3]:^13}|{datos[4]:^18}|{datos[5]:^20}|')
                     print(f'+{"-"*107}+')
                     dicc[id_libro]=[datos[0],datos[1],datos[2],datos[3],datos[4],datos[5]]
@@ -119,7 +119,7 @@ def Reportes():
             reporte_generos()
         elif metodo == "4":
             tipo = 3       
-            anio = list(diccionario_autores.items())
+            anio = list(diccionario_libros.items())
             anio_busqueda= input("ingrese el año de publicacion del libro a desear: ")
             try:
 
@@ -130,7 +130,7 @@ def Reportes():
                 print(f'+{"-"*98}+')
                 coincidencia = 0
                 for clave, datos in anio:
-                    if anio_datetime == diccionario_autores[clave][4]:        
+                    if anio_datetime == diccionario_libros[clave][4]:        
                         print(f'|{datos[0]:^15}|{datos[1]:^15}|{datos[2]:^12}|{datos[3]:^13}|{datos[4]:^18}|{datos[5]:^20}|')
                         print(f'+{"-"*98}+')
                         dicc[clave]=[datos[0],datos[1],datos[2],datos[3],datos[4],datos[5]]

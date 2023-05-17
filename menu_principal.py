@@ -120,7 +120,9 @@ menu()
 datos_a_grabar = dict()
 archivo = open("catalogo_libreria.csv","w", newline="")
 grabador = csv.writer(archivo)
-grabador.writerows([(id,listado[0],listado[1],listado[2],listado[3],listado[4],listado[5]) for id,listado in diccionario_libros.items()])
+grabador.writerows([(id,listado[0],listado[1],listado[2],
+                     listado[3],listado[4],listado[5]) for id,listado 
+                     in diccionario_libros.items()])
 archivo.close()
 
 #Guardar Diccionario_Autores

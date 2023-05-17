@@ -27,6 +27,8 @@ def registro():
 
 
             while True:
+                ##Tabla de autores
+
                 _autor=input(f"Ingresa el autor del libro {titulo}:\n-->")
                 if _autor.isdigit():
                     print("El dato es un valor entero")
@@ -38,6 +40,8 @@ def registro():
             print("+"+"-"*60+"+")
 
             while True:
+                ##Tabla de Generos
+                
                 _genero=input(f"Ingresa el genero del libro {titulo}:\n-->")
                 if _genero.isdigit():
                     print("El  dato es un valor entero")
