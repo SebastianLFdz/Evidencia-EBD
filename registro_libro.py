@@ -1,5 +1,8 @@
 from diccionario import diccionario
 import datetime
+import sys
+import sqlite3
+from sqlite3 import Error
 
 
 def registro():
@@ -93,7 +96,8 @@ def registro():
 
             while True:
                 lista_datos = [titulo,autor,genero, isbn, año_publicacion, string_adquisicion]
-                
+                datos_insert = tuple(lista_datos)
+
                 print(f"+{'-'*122}+")
                 print(f"|{'ID Clave':^8}|{'Titulo':^15}|{'Autor':^15}|{'Genero':^15}|{'ISBN':^20}|{'Año de publicacion':^20}|{'Fecha de adquisicion':^23}|")
                 print(f"+{'='*8:^8}|{'='*15:^15}|{'='*15:^15}|{'='*15:^15}|{'='*20:^20}|{'='*20:^20}|{'='*23:^23}+")
@@ -101,6 +105,16 @@ def registro():
                 print(f"+{'-'*122}+")
                 validacion = input(f"¿Todos los datos introducidos estan correctos?\n (S/N): ")
                 if validacion.upper() == "S":
+                    try:
+                        with sqlite3.connect("J_Felix_Garcia.db") as conn:
+                            cursor_freson = conn.cursor()
+                            valores = datos_insert
+                            cursor_freson.execute("INSERT INTO registros_libros VALUES(?,?,?,?,?,?,?)", valores)
+                    except Error as e:
+                        print(e)
+                    except Exception:
+                        print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
+
                     diccionario[id_libro]=[titulo,autor,genero, isbn, año_publicacion, string_adquisicion]
                     break
                 elif validacion.upper() == "N":
