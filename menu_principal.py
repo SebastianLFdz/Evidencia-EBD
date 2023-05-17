@@ -1,20 +1,50 @@
+from sqlite3 import Error
+import sqlite3
 from consultas_Y_reportes import consulta_Y_reporte 
 from registro_libro import registro
 from diccionario import diccionario
 import csv
-import os 
+import sys
 
-
+##Busqueda de CSV de Diccionario de Libros
 try:   
     with open("registros_libreria.csv","r", newline="") as archivo:
         lector = csv.reader(archivo)
         for id, titulo, nombre, genero, isbn, año, fecha in lector:
             diccionario[int(id)] = ([titulo, nombre, genero, isbn, año, fecha])
-        
 except FileNotFoundError:
     pass
 except Exception:
     print("Ocurrio un Error Inesperado al buscar el respaldo")
+
+##Busqueda de CSV de Diccionario de Autores
+
+
+##Busqueda de CSV de Diccionario de Generos
+
+
+##BUsqueda de DB de la Biblioteca
+try:
+    with sqlite3.connect("JFelix_Garcia_Biblioteca.db") as conn:
+        cursor_autor = conn.cursor()
+        cursor_autor.execute("CREATE TABLE IF NOT EXISTS registros_autores \
+                                (clave INTEGER PRIMARY KEY,\
+                                nombre TEXT NOT NULL, apellido TEXT NOT NULL)")
+        cursor_autor.execute("CREATE TABLE IF NOT EXISTS registros_generos \
+                                (clave INTEGER PRIMARY KEY,\
+                                nombre TEXT NOT NULL)")
+        cursor_autor.execute("CREATE TABLE IF NOT EXISTS registros_libros \
+                                (clave INTEGER PRIMARY KEY,\
+                                titulo TEXT NOT NULL, autor TEXT NOT NULL,\
+                                genero TEXT NOT NULL, isbn INTEGER NOT NULL,\
+                                añopub timestamp NOT NULL, fechaadq timestamp NOT NULL)")
+except Error as e:
+    print(e)
+except Exception:
+    print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
+
+
+
 
 def menu():
     while True:
