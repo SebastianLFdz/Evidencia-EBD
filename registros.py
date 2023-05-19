@@ -11,24 +11,36 @@ def registros_autores():
             numero_validacion = 0
             print("Registro de autor")
             id_autor = max(diccionario_autores, default=0)+1
-            nombre_autor = input("Ingrese el nombre del autor: ").upper()
-            apellido_autor = input("Ingrese el apellido del autor: ").upper()
-            lista_autores = [nombre_autor,apellido_autor]
+            while True:
+                try:
+                    nombre_autor = str(input("Ingrese el nombre del autor: ").upper())
+                    if nombre_autor == '':
+                        print('El dato no se de omitir, intente de nuevo.')
+                    else:
+                        break
+                except TypeError:
+                    print("El nombre es del tipo incorrecto, intente de nuevo.")
+            
+            while True:
+                try:
+                    apellido_autor = str(input("Ingrese el apellido del autor: ").upper())
+                    if nombre_autor == '':
+                        print('El dato no se de omitir, intente de nuevo.')
+                    else:
+                        break
+                except TypeError:
+                    print('El apellido es del tipo incorrecto, intente de nuevo.')
+                        
 
             for tuplita in diccionario_autores.items():
                 if nombre_autor == tuplita[1][0] and apellido_autor == tuplita[1][1]:
                     print("El autor ya existe")
                     numero_validacion += 1
             if numero_validacion == 0:
-                lista_autores = [id_autor,nombre_autor,apellido_autor]
                 diccionario_autores[id_autor] = [nombre_autor,apellido_autor]
                 print("Se registro correctamente el nuevo autor en la memoria interna")
-
-            with sqlite3.connect("JFelix_Garcia_Biblioteca.db") as conn:
-                cursos_autor = conn.cursor()
-                cursos_autor.execute("INSERT INTO registros_autores (nombre,apellido)\
-                                     VALUES(?,?)", lista_autores)
-                print("Se registro correctamente el nuevo autor en la base de datos")
+            elif numero_validacion > 0:
+                continue
 
             try:
                 while True:
@@ -49,25 +61,32 @@ def registros_autores():
         print (e)
     except Exception:
         print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
-    finally:
-        conn.close()
 
 def registros_generos():
     try:
         while True:
+            numero_validacion = 0
+            print("Registro de genero")
             id_genero=max(diccionario_generos,default=0)+1
-            nuevo_genero=input("ingresa el nuevo genero a registrar: ").upper()
-            if nuevo_genero == '':
-                print('El dato no se de omitir, intente de nuevo.')
-            elif nuevo_genero.isdigit():
-                print('El dato es del tipo incorrecto, intente de nuevo.')
-            diccionario_generos[id_genero]= [nuevo_genero]
-            ##SQL
-            with sqlite3.connect("JFelix_Garcia_Biblioteca.db") as conn:
-                cursos_autor = conn.cursor()
-                cursos_autor.execute("INSERT INTO registros_generos (nombre)\
-                                     VALUES(nuevo_genero)")
-                print("Se registro correctamente el nuevo autor en la base de datos")
+            while True:
+                try:
+                    nuevo_genero = str(input("ingresa el nuevo genero a registrar: ").upper())
+                    if nuevo_genero == '':
+                        print('El dato no se de omitir, intente de nuevo.')
+                    else:
+                        break
+                except TypeError:
+                    print('El dato es del tipo incorrecto, intente de nuevo.')
+            for nombre in diccionario_generos.values():
+                if nuevo_genero == nombre[0]:
+                    print("El genero ya existe")
+                    numero_validacion += 1
+            if numero_validacion == 0:
+                diccionario_generos[id_genero] = [nuevo_genero]
+                print("Se registro correctamente el nuevo autor en la memoria interna")
+            elif numero_validacion > 0:
+                continue
+            
 
             while True:
                 try:
@@ -75,7 +94,6 @@ def registros_generos():
                     if decision =="S":
                         break
                     elif decision=="N":
-                        print("Se completo el registro deseado")
                         break
                     else:
                         print("La respuesta no es valida. ")

@@ -2,14 +2,21 @@ from diccionario import diccionario_libros
 from diccionario import diccionario_autores
 from diccionario import diccionario_generos
 import datetime
-import sys
-import sqlite3
-from sqlite3 import Error
 from tabulate import tabulate
+import sys
+
 
 def registro():
     print("+"+"-"*60+"+")
     fecha_actual = datetime.datetime.now().date()
+    tabulado_autores = [["Clave","Nombre","Apellido"]]
+    tabulado_generos = [["Clave","Nombre"]]
+
+    for id, lista in diccionario_autores.items():
+        tabulado_autores.append([id,lista[0],lista[1]])
+
+    for id, lista in diccionario_generos.items():
+        tabulado_generos.append([id,lista[0]])
 
     def ingresar_datos():
         lista_datos = []
@@ -31,16 +38,36 @@ def registro():
 
             while True:
                 ##Tabla de autores
-                print(tabulate(diccionario_autores.items()))
+                print(tabulate(tabulado_autores, tablefmt="grid"))
+                while True:
+                    try:
+                        autor = input("Escoge el nombre de un autor de la lista: ").upper()
+                        if autor.isdigit():
+                            print("El dato es un valor entero y no es correcto, intente de nuevo.")
+                        elif autor =="":
+                            print("No se puede omitir este dato, intente de nuevo.")
+                        else:
+                            break
+                    except Exception:
+                        print("Ocurrio un Error inesperado ")
+                        print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
+                
+                while True:
+                    try:
+                        apellido = input("Escoge el apellido de un autor de la lista: ").upper()
+                        if apellido.isdigit():
+                            print("El dato es un valor entero y no es correcto, intente de nuevo.")
+                        elif apellido =="":
+                            print("No se puede omitir este dato, intente de nuevo.")
+                        else:
+                            break
+                    except Exception:
+                        print("Ocurrio un Error inesperado ")
+                        print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
 
-                autor = input("registra un autor de la lista ")
-                if autor.isdigit():
-                    print("El dato es un valor entero y no es correcto, intente de nuevo.")
-                elif autor =="":
-                    print("No se puede omitir este dato, intente de nuevo.")
-                else:
-                    for tupla in diccionario_autores.items():
-                        if autor == tupla[1]:
+                for tupla in diccionario_autores.items():
+                    if autor == tupla[1][0]:
+                        if apellido == tupla[1][1]:
                             print("El autor se registro bien")
                             validacion += 1
                 if validacion > 0 :
@@ -52,17 +79,24 @@ def registro():
 
             while True:
                 ##Tabla de Generos
-                print(tabulate(diccionario_generos.items()))
-                _genero=input(f"Ingresa el genero del libro {titulo}:\n-->")
-                if _genero.isdigit():
-                    print("El  dato es un valor entero")
-                elif _genero =="":
-                    print("No se admiten valores nulos")
-                else:
-                    for tupla in diccionario_generos.items():
-                        if autor == tupla[1]:
-                            print("El género se registro bien")
-                            validacion_2 += 1
+                print(tabulate(tabulado_generos, tablefmt="grid"))
+                while True:
+                    try:
+                        _genero = input(f"Ingresa el genero del libro {titulo}:\n-->").upper()
+                        if _genero.isdigit():
+                            print("El  dato es un valor entero")
+                        elif _genero =="":
+                            print("No se admiten valores nulos")
+                        else:
+                            break
+                    except Exception:
+                        print("Ocurrio un Error inesperado ")
+                        print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
+
+                for id, tupla in diccionario_generos.items():
+                    if _genero == tupla[0]:
+                        print("El género se registro bien")
+                        validacion_2 += 1
                 if validacion_2 > 0 :
                     break
                 else:
@@ -116,8 +150,7 @@ def registro():
             string_adquisicion = str(fecha_adquisicion_procesada)
 
             while True:
-                lista_datos = [titulo,autor,genero, isbn, año_publicacion, string_adquisicion]
-                datos_insert = tuple(lista_datos)
+                lista_datos = [titulo,autor,_genero, isbn, año_publicacion, string_adquisicion]
 
                 print(f"+{'-'*122}+")
                 print(f"|{'ID Clave':^8}|{'Titulo':^15}|{'Autor':^15}|{'Genero':^15}|{'ISBN':^20}|{'Año de publicacion':^20}|{'Fecha de adquisicion':^23}|")
@@ -126,17 +159,7 @@ def registro():
                 print(f"+{'-'*122}+")
                 validacion = input(f"¿Todos los datos introducidos estan correctos?\n (S/N): ")
                 if validacion.upper() == "S":
-                    try:
-                        with sqlite3.connect("J_Felix_Garcia.db") as conn:
-                            cursor_freson = conn.cursor()
-                            valores = datos_insert
-                            cursor_freson.execute("INSERT INTO registros_libros VALUES(?,?,?,?,?,?,?)", valores)
-                    except Error as e:
-                        print(e)
-                    except Exception:
-                        print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
-
-                    diccionario_libros[id_libro]=[titulo,autor,genero, isbn, año_publicacion, string_adquisicion]
+                    diccionario_libros[id_libro]=[titulo,autor,_genero, isbn, año_publicacion, string_adquisicion]
                     break
                 elif validacion.upper() == "N":
                     print("+"+"-"*60+"+")
@@ -156,22 +179,38 @@ def registro():
                                 break
                     elif dato_modificar == 2:
                         while True:
+                            print(tabulate(tabulado_autores, tablefmt="grid"))
                             _autor=input(f"Ingresa el nuevo autor del libro {titulo}:  ")
                             if _autor.isdigit():
                                 print("El dato es un entero")
                             elif _titulo=="":
                                 print("No se admiten valores nulos")
                             else:
-                                autor= _autor.upper()
+                                for tupla in diccionario_autores.items():
+                                    if autor == tupla[1]:
+                                        print("El autor se registro bien")
+                                        validacion += 1
+                            if validacion > 0 :
+                                break
+                            else:
+                                print("No se encontro un autor")
                     elif dato_modificar == 3:
                         while True:
+                            print(tabulate(tabulado_generos, tablefmt="grid"))
                             _genero=input(f"Ingresa el nuevo genero del libro {titulo}:  ")
                             if _genero.isdigit():
                                 print("El dato es un entero")
                             elif _titulo=="":
                                 print("No se admiten valores nulos")
                             else:
-                                genero = _genero.upper()
+                                for tupla in diccionario_generos.items():
+                                    if _genero == tupla[1]:
+                                        print("El género se registro bien")
+                                        validacion_2 += 1
+                            if validacion_2 > 0 :
+                                break
+                            else:
+                                print("No se encontro el género.")
                     
                     elif dato_modificar == 4:
                         isbn=input(f"Ingresa la nuev clave ISBN {titulo}: ")
