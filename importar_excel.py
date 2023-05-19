@@ -6,7 +6,7 @@ from openpyxl.styles import Border, Side
 from openpyxl.styles import Alignment
 import os
 
-def importar_excel(diccionario,tipo):
+def importar_excel(diccionario_libros,tipo):
     #Asignacion de Variables
     biblioteca = openpyxl.Workbook()
     numero = 2
@@ -56,19 +56,19 @@ def importar_excel(diccionario,tipo):
     primera.column_dimensions["G"].width = len(primera["G1"].value)
 
     for columna in range(1,8):
-        for renglon in range(1,len(diccionario.keys())+2):
+        for renglon in range(1,len(diccionario_libros.keys())+2):
             primera.cell(row=renglon, column=columna).alignment = centrado
 
     #Ingreso de Datos
-    lista_dicc = list(diccionario.keys())
+    lista_dicc = list(diccionario_libros.keys())
     for fila in lista_dicc:
         primera.cell(row=numero, column=1).value = fila
-        primera.cell(row=numero, column=2).value = diccionario[fila][0]
-        primera.cell(row=numero, column=3).value = diccionario[fila][1]
-        primera.cell(row=numero, column=4).value = diccionario[fila][2]
-        primera.cell(row=numero, column=5).value = diccionario[fila][3]
-        primera.cell(row=numero, column=6).value = diccionario[fila][4]
-        primera.cell(row=numero, column=7).value = diccionario[fila][5]
+        primera.cell(row=numero, column=2).value = diccionario_libros[fila][0]
+        primera.cell(row=numero, column=3).value = diccionario_libros[fila][1]
+        primera.cell(row=numero, column=4).value = diccionario_libros[fila][2]
+        primera.cell(row=numero, column=5).value = diccionario_libros[fila][3]
+        primera.cell(row=numero, column=6).value = diccionario_libros[fila][4]
+        primera.cell(row=numero, column=7).value = diccionario_libros[fila][5]
         numero += 1
     
 
