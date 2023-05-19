@@ -47,7 +47,9 @@ def Reportes():
                             grabador = csv.writer(archivo)
                             grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
                             grabador.writerows([(clave, info[0], info[1], info[2], info[3], info[4], info[5]) for clave, info in dicc.items()])
-                            print("Archivo ya esta creado")
+                            nombre_file_catalogo = "catalogo_libreria.csv"
+                            ruta_libreria = os.path.abspath(nombre_file_catalogo)
+                            print(f"El archivo {nombre_file_catalogo} fué creado exitosamente, localizado en {ruta_libreria}.")
                             print("Gracias por visitar la biblioteca J. FELIX GARCIA")
                             break
                     elif pregunta_seleccion == 2:
@@ -101,7 +103,9 @@ def Reportes():
                             grabador = csv.writer(archivo)
                             grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
                             grabador.writerows([(clave, info[0], info[1], info[2], info[3], info[4], info[5])for clave, info in dicc.items()])
-                            print("El Archivo fue creado exitosamente")
+                            nombre_file_autor = "autor_libreria.csv"
+                            ruta_autor = os.path.abspath(nombre_file_autor)
+                            print(f"El archivo {nombre_file_autor} fué creado exitosamente, localizado en {ruta_autor}.")
                             print("Gracias por visitar la biblioteca J. FELIX GARCIA")
                             break
                     elif pregunta_seleccion == 2:
@@ -145,7 +149,9 @@ def Reportes():
                                     grabador = csv.writer(archivo)
                                     grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
                                     grabador.writerows([(clave, info[0], info[1], info[2], info[3], info[4], info[5]) for clave, info in dicc.items()])
-                                    print("El Archivo fue creado exitosamente")
+                                    nombre_file_anio = "anio_publicacion_libreria.csv"
+                                    ruta_anio = os.path.abspath(nombre_file_anio)
+                                    print(f"El archivo {nombre_file_anio} fué creado exitosamente, localizado en {ruta_anio}.")
                                     print("Gracias por visitar la biblioteca J. FELIX GARCIA")
                                     break
                             elif pregunta_seleccion == 2:

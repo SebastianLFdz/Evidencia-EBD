@@ -56,7 +56,9 @@ def reporte_generos():
                         grabador = csv.writer(archivo)
                         grabador.writerow(("clave", "titulo", "autor", "genero", "isbn", "año_publi"))
                         grabador.writerows([(clave, info[0], info[1], info[2], info[3], info[4], info[5])for clave, info in dicc.items()])
-                        print("El Archivo fue creado exitosamente")
+                        nombre_file_genero = "reporte_genero.csv"
+                        ruta_genero = os.path.abspath(nombre_file_genero)
+                        print(f"El archivo {nombre_file_genero} fué creado exitosamente, localizado en {ruta_genero}.")
                         print("Gracias por visitar la biblioteca J. FELIX GARCIA")
                         break
                 elif pregunta_seleccion == 2:

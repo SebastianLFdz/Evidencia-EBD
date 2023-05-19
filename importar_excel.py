@@ -4,6 +4,7 @@ from openpyxl.styles import Font
 import openpyxl.worksheet.dimensions 
 from openpyxl.styles import Border, Side
 from openpyxl.styles import Alignment
+import os
 
 def importar_excel(diccionario,tipo):
     #Asignacion de Variables
@@ -83,4 +84,7 @@ def importar_excel(diccionario,tipo):
 
     #Guardar Archivo
     biblioteca.save(f"Reporte de Libros {typo} .xlsx")
+    nombre_file_reporte = (f"Reporte de Libros {typo}.xlsx")
+    ruta_reporte_libros = os.path.abspath(nombre_file_reporte)
+    print(f"El archivo {nombre_file_reporte} fué creado exitosamente, localizado en {ruta_reporte_libros}.")
     print("Se creo el archivo correctamente")
