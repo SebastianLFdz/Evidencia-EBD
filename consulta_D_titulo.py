@@ -56,7 +56,7 @@ def Consulta_de_titulo():
             n=0
             for llaves, valores in diccionario_libros.items():
                 if isbn in valores:
-                    if diccionario_libros[llaves][3] == isbn:
+                    if valores[3] == isbn:
                         print(f"|{llaves:^8}|{valores[0]:^15}|{valores[1]:^15}|{valores[2]:^15}|{valores[3]:^20}|{valores[4]:^20}|{valores[5]:^23}|")
                         print(f"+{'-'*122}+")
                         n+=1
