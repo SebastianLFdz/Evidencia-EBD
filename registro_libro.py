@@ -1,18 +1,21 @@
 from diccionario import diccionario_libros
-from diccionario
+from diccionario import diccionario_autores
+from diccionario import diccionario_generos
 import datetime
 import sys
 import sqlite3
 from sqlite3 import Error
-
+from tabulate import tabulate
 
 def registro():
     print("+"+"-"*60+"+")
     fecha_actual = datetime.datetime.now().date()
 
     def ingresar_datos():
-
         lista_datos = []
+        validacion = 0
+        validacion_2 = 0
+
         while True:
             id_libro=max(diccionario_libros, default=0)+1
             while True:
@@ -26,31 +29,44 @@ def registro():
                     break
             print("+"+"-"*60+"+")
 
-
             while True:
                 ##Tabla de autores
+                print(tabulate(diccionario_autores.items()))
 
-                _autor=input(f"Ingresa el autor del libro {titulo}:\n-->")
-                if _autor.isdigit():
-                    print("El dato es un valor entero")
-                elif _autor=="":
-                    print("No se admiten valores nulos")
-                else:    
-                    autor = _autor.upper()
+                autor = input("registra un autor de la lista ")
+                if autor.isdigit():
+                    print("El dato es un valor entero y no es correcto, intente de nuevo.")
+                elif autor =="":
+                    print("No se puede omitir este dato, intente de nuevo.")
+                else:
+                    for tupla in diccionario_autores.items():
+                        if autor == tupla[1]:
+                            print("El autor se registro bien")
+                            validacion += 1
+                if validacion > 0 :
                     break
+                else:
+                    print("No se encontro un autor")
+
             print("+"+"-"*60+"+")
 
             while True:
                 ##Tabla de Generos
-                
+                print(tabulate(diccionario_generos.items()))
                 _genero=input(f"Ingresa el genero del libro {titulo}:\n-->")
                 if _genero.isdigit():
                     print("El  dato es un valor entero")
                 elif _genero =="":
                     print("No se admiten valores nulos")
                 else:
-                    genero = _genero.upper()
+                    for tupla in diccionario_generos.items():
+                        if autor == tupla[1]:
+                            print("El género se registro bien")
+                            validacion_2 += 1
+                if validacion_2 > 0 :
                     break
+                else:
+                    print("No se encontro el género.")
 
             print("+"+"-"*60+"+")
             while True:
