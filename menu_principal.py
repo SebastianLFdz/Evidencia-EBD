@@ -34,7 +34,7 @@ except Exception:
 
 ##Busqueda de CSV de Diccionario de Generos
 try:   
-    with open("catalogo_generos.csv","r", newline="") as archivo:
+    with open("catalogo_genero.csv","r", newline="") as archivo:
         lector = csv.reader(archivo)
         for id, nombre in lector:
             diccionario_generos[int(id)] = ([nombre])
