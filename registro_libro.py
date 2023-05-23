@@ -195,7 +195,6 @@ def registro():
                                 for id, tupla in diccionario_autores.items():
                                     if _autor == id:
                                         autor = tupla[0]
-                                        print(autor)
                                         print("El autor se registro bien")                                        
                                         validacion_1 += 1
                                 if validacion_1 > 0 :
