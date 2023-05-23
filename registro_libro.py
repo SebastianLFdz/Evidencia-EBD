@@ -4,6 +4,8 @@ from diccionario import diccionario_generos
 import datetime
 from tabulate import tabulate
 import sys
+import csv
+import sqlite3
 
 
 def registro():
@@ -133,6 +135,7 @@ def registro():
             año_publicacion = fecha_publicacion_procesada.year 
             string_adquisicion = str(fecha_adquisicion_procesada)
 
+            datos_a_grabar = {}
             while True:
                 lista_datos = [titulo,autor,_genero, isbn, año_publicacion, string_adquisicion]
 
@@ -142,15 +145,28 @@ def registro():
                 print(f"|{id_libro:^8}|{lista_datos[0]:^15}|{lista_datos[1]:^15}|{lista_datos[2]:^15}|{lista_datos[3]:^20}|{lista_datos[4]:^20}|{lista_datos[5]:^23}|")
                 print(f"+{'-'*122}+")
                 validacion = input(f"¿Todos los datos introducidos estan correctos?\n (S/N): ")
+
                 if validacion.upper() == "S":
                     diccionario_libros[id_libro]=[titulo,autor,_genero, isbn, año_publicacion, string_adquisicion]
+                    datos_a_grabar[id_libro] = [titulo,autor,_genero, isbn, año_publicacion, string_adquisicion]
+                    with open("catalogo_libreria.csv","w", newline="") as archivo:
+                        grabador = csv.writer(archivo)
+                        grabador.writerows([(id,listado[0],listado[1],listado[2],listado[3],listado[4],listado[5]) for id,listado in datos_a_grabar.items()])
+                        print("Se registro correctamente los nuevos registros de libros en la memoria externa")
+                    with sqlite3.connect("JFelix_Garcia_Biblioteca.db") as conn:
+                        cursor_biblioteca = conn.cursor()
+                        for id_libros, lista_libros in datos_a_grabar.items():
+                            cursor_biblioteca.execute("INSERT INTO registros_libros (titulo,autor,genero, isbn, añopub, fechaadq)\
+                                          VALUES(?,?,?,?,?,?)", lista_libros)
                     break
+
                 elif validacion.upper() == "N":
                     print("+"+"-"*60+"+")
                     print(f"¿Cual dato quiere modificar?")
                     print(f"1)Titulo\t2)Autor\t\t\t3)Genero\n4)ISBN\t\t5)Fecha de Publicacion\t6)Fecha de Adquisicion")
                     dato_modificar = int(input("--> "))
                     print("+"+"-"*60+"+")
+
                     if dato_modificar == 1:
                         while True:
                             _titulo=input("Ingresa el titulo del libro que deseas registrar:\n-->")

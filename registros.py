@@ -3,9 +3,11 @@ import sys
 from sqlite3 import Error
 from diccionario import diccionario_autores
 from diccionario import diccionario_generos
+import csv
 
 
 def registros_autores():
+    datos_a_grabar = {}
     try:
         while True:
             numero_validacion = 0
@@ -20,6 +22,7 @@ def registros_autores():
                         break
                 except TypeError:
                     print("El nombre es del tipo incorrecto, intente de nuevo.")
+            
             
             while True:
                 try:
@@ -38,7 +41,16 @@ def registros_autores():
                     numero_validacion += 1
             if numero_validacion == 0:
                 diccionario_autores[id_autor] = [nombre_autor,apellido_autor]
-                print("Se registro correctamente el nuevo autor en la memoria interna")
+                datos_a_grabar[id_autor] = [nombre_autor,apellido_autor]
+                with open("catalogo_autores.csv","w", newline="") as archivo:
+                    grabador = csv.writer(archivo)
+                    grabador.writerows([(id,listado[0],listado[1]) for id,listado in datos_a_grabar.items()])
+                    print("Se registro correctamente el nuevo autor en la memoria interna")
+                with sqlite3.connect("JFelix_Garcia_Biblioteca.db") as conn:
+                    cursor_biblioteca = conn.cursor()
+                    for id_autores, lista_autores in datos_a_grabar.items():
+                        cursor_biblioteca.execute("INSERT INTO registros_autores (nombre,apellido)\
+                                    VALUES(?,?)", lista_autores)
             elif numero_validacion > 0:
                 continue
 
@@ -64,6 +76,7 @@ def registros_autores():
 
 def registros_generos():
     try:
+        datos_a_grabar = {}
         while True:
             numero_validacion = 0
             print("Registro de genero")
@@ -83,6 +96,16 @@ def registros_generos():
                     numero_validacion += 1
             if numero_validacion == 0:
                 diccionario_generos[id_genero] = [nuevo_genero]
+                datos_a_grabar[id_genero] = [nuevo_genero]
+                with open("catalogo_genero.csv","w", newline="") as archivo:
+                    grabador = csv.writer(archivo)
+                    grabador.writerows([(id,listado[0]) for id,listado in datos_a_grabar.items()])
+                    print("Se registro correctamente el nuevo genero en la memoria interna")
+                with sqlite3.connect("JFelix_Garcia_Biblioteca.db") as conn:
+                    cursor_biblioteca = conn.cursor()
+                    for id_generos, lista_generos in datos_a_grabar.items():
+                        cursor_biblioteca.execute("INSERT INTO registros_generos (nombre)\
+                                    VALUES(?)", (lista_generos))
                 print("Se registro correctamente el nuevo autor en la memoria interna")
             elif numero_validacion > 0:
                 continue
