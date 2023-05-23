@@ -41,8 +41,8 @@ def registro():
                 print(tabulate(tabulado_autores, tablefmt="grid"))
                 while True:
                     try:
-                        clavesita = int(input("Ingresa la llave del autor deseado: "))
-                        if clavesita =="":
+                        autor = int(input("Ingresa la llave del autor deseado: "))
+                        if autor =="":
                             print("No se puede omitir este dato, intente de nuevo.")
                         else:
                             break
@@ -51,7 +51,7 @@ def registro():
                         print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
 
                 for tupla in diccionario_autores.keys():
-                    if clavesita == tupla:
+                    if autor == tupla:
                         print("El autor se registro bien")
                         validacion += 1
                 if validacion > 0 :
@@ -164,8 +164,8 @@ def registro():
                     elif dato_modificar == 2:
                         while True:
                             print(tabulate(tabulado_autores, tablefmt="grid"))
-                            _autor=input(f"Ingresa el nuevo autor del libro {titulo}:  ")
-                            if _autor.isdigit():
+                            autor=input(f"Ingresa el nuevo autor del libro {titulo}:  ")
+                            if autor.isdigit():
                                 print("El dato es un entero")
                             elif _titulo=="":
                                 print("No se admiten valores nulos")
