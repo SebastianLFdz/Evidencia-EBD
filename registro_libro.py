@@ -41,23 +41,8 @@ def registro():
                 print(tabulate(tabulado_autores, tablefmt="grid"))
                 while True:
                     try:
-                        autor = input("Escoge el nombre de un autor de la lista: ").upper()
-                        if autor.isdigit():
-                            print("El dato es un valor entero y no es correcto, intente de nuevo.")
-                        elif autor =="":
-                            print("No se puede omitir este dato, intente de nuevo.")
-                        else:
-                            break
-                    except Exception:
-                        print("Ocurrio un Error inesperado ")
-                        print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
-                
-                while True:
-                    try:
-                        apellido = input("Escoge el apellido de un autor de la lista: ").upper()
-                        if apellido.isdigit():
-                            print("El dato es un valor entero y no es correcto, intente de nuevo.")
-                        elif apellido =="":
+                        clavesita = int(input("Ingresa la llave del autor deseado: "))
+                        if clavesita =="":
                             print("No se puede omitir este dato, intente de nuevo.")
                         else:
                             break
@@ -65,11 +50,10 @@ def registro():
                         print("Ocurrio un Error inesperado ")
                         print(f"Se produjo el siguiente error: {sys.exc_info()[0]}")
 
-                for tupla in diccionario_autores.items():
-                    if autor == tupla[1][0]:
-                        if apellido == tupla[1][1]:
-                            print("El autor se registro bien")
-                            validacion += 1
+                for tupla in diccionario_autores.keys():
+                    if clavesita == tupla:
+                        print("El autor se registro bien")
+                        validacion += 1
                 if validacion > 0 :
                     break
                 else:
